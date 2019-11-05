@@ -9,31 +9,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.aisling.javaee.Participant;
+import net.aisling.javaee.ParticipantDao;
+
 /**
  * Servlet implementation class EcaServlet
  */
-@WebServlet("/ecaServlet")
+@WebServlet("/register")
 public class EcaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EcaServlet() {
-        super();
-        
+	private ParticipantDao participantDao;
+	
+	public void init() {
+		participantDao = new ParticipantDao();
     }
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		    throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		String yourName = request.getParameter("yourName");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter writer = response.getWriter();
-		writer.println("<h1> Hello " + yourName + "</h1>");
-		
-	}
-
+		        String firstName = request.getParameter("firstName");
+		        String lastName = request.getParameter("lastName");
+		        String schoolClass = request.getParameter("schoolClass"); 
+		        
+		        Participant participant = new Participant();
+		        participant.setFirstName(firstName);
+		        participant.setLastName(lastName);
+		        participant.setSchoolClass(schoolClass);
+		        
+		        try {
+		            participantDao.registerParticipant(participant);
+		        } catch (Exception e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+		        
+		        response.sendRedirect("bookingDetails.jsp");
+}
 }
