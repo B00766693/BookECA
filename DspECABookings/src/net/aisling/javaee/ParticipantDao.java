@@ -10,8 +10,8 @@ import net.aisling.javaee.Participant;
 public class ParticipantDao {
 	public int registerParticipant(Participant participant) throws ClassNotFoundException {
         String INSERT_USERS_SQL = "INSERT INTO participant" +
-            "  (first_name, last_name, class) VALUES " +
-            " (?, ?, ?);";
+            "  (first_name, last_name, class, parentName, telNo) VALUES " +
+            " (?, ?, ?,?,?);";
 
         int result = 0;
 
@@ -24,6 +24,8 @@ public class ParticipantDao {
                 preparedStatement.setString(1, participant.getFirstName());
                 preparedStatement.setString(2, participant.getLastName());
                 preparedStatement.setString(3, participant.getSchoolClass());
+                preparedStatement.setString(4, participant.getParentName());
+                preparedStatement.setString(5, participant.getTelNo());
                 
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query

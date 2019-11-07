@@ -32,12 +32,16 @@ public class EcaServlet extends HttpServlet {
 
 		        String firstName = request.getParameter("firstName");
 		        String lastName = request.getParameter("lastName");
-		        String schoolClass = request.getParameter("schoolClass"); 
+		        String schoolClass = request.getParameter("schoolClass");
+		        String parentName = request.getParameter("parentName");
+		        String telNo = request.getParameter("telNo");
 		        
 		        Participant participant = new Participant();
 		        participant.setFirstName(firstName);
 		        participant.setLastName(lastName);
 		        participant.setSchoolClass(schoolClass);
+		        participant.setParentName(parentName);
+		        participant.setTelNo(telNo);
 		        
 		        try {
 		            participantDao.registerParticipant(participant);

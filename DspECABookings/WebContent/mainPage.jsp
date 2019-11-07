@@ -9,53 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-         .button {
-         background-color: #1c87c9;
-         border: none;
-         color: white;
-         padding: 8px 10px;
-         text-align: center;
-         text-decoration: none;
-         display: inline-block;
-         float: right;
-         font-size: 20px;
-         margin: 4px 2px;
-         cursor: pointer;
-         }
-         h2 {
-  		position: absolute;
-  		left: 205px;
-  		top: 38px;
-		}
-		.button2{
-         background-color: #33cc33;
-         border: none;
-         color: white;
-         padding: 8px 10px;
-         text-align: center;
-         text-decoration: none;
-         display: inline-block;
-         float: right;
-         font-size: 20px;
-         margin: 4px 2px;
-         cursor: pointer;
-         }
-         table {
-  		font-family: arial, sans-serif;
-  		border-collapse: collapse;
- 		 width: 100%;
-		}
-
-		td, th {
-  		text-align: left;
-  		padding: 8px;
-		}
-		
-		tr:nth-child(even) {
- 		 background-color: #85C1E9;
-		}
-      </style>
+<link rel="stylesheet" href="mystyle.css">
 <title>DSP ECA Booking</title>
 </head>
 <body>
@@ -74,9 +28,15 @@
 		<option value ="junior">Junior Infants</option>
 		<option value ="senior">Senior Infants</option>
 		<option value ="first">First Class</option>
+		<option value ="second">Second Class</option>
+		<option value ="third">Third Class</option>
+		<option value ="fourth">Fourth Class</option>
+		<option value ="fifth">Fifth Class</option>
+		<option value ="sixth">Sixth Class</option>
 	</select>
 	<br><br>
-	<input type="submit" class="button2" value="Submit"/>
+	Parent name:  <input type="text" name="parentName" size="20" >
+	Tel No.:  <input type="text" name="telNo" size="20">
 </fieldset>
 
 
@@ -85,7 +45,6 @@
 	<legend>Classes And Activities :     </legend>
 	<table>
   <tr>
-    <th>Code</th>
     <th>Day</th>
     <th>Name</th>
     <th>Time</th>
@@ -94,6 +53,7 @@
     <th>Cost</th>
     <th>Places</th>
     <th>Available</th>
+    <th>Book</th>
   </tr>
   
   <sql:setDataSource
@@ -109,7 +69,6 @@
   
   <c:forEach var="user" items="${listUsers.rows}">
                 <tr>
-                    <td><c:out value="${user.ecaCode}" /></td>
                     <td><c:out value="${user.dayOfWeek}" /></td>
                     <td><c:out value="${user.activityName}" /></td>
                     <td><c:out value="${user.classTime}" /></td>
@@ -118,14 +77,17 @@
                     <td><c:out value="${user.cost}" /></td>
                     <td><c:out value="${user.maxClassSize}" /></td>
                     <td><c:out value="${user.spacesAvailable}" /></td>
+                    <td><input type = "checkbox" name="bookingCode" value="${user.ecaCode}"></td>
                 </tr>
             </c:forEach>
   
-  
-  
+
   </table>
 	
 </fieldset>
+
+<input type="submit" class="button2" value="Submit"/>
+
 </form>
 
 

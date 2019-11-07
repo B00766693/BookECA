@@ -1,0 +1,47 @@
+
+         .button {
+         background-color: #1c87c9;
+         border: none;
+         color: white;
+         padding: 8px 10px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         float: right;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+         h2 {
+  		position: absolute;
+  		left: 205px;
+  		top: 38px;
+		}
+		.button2{
+         background-color: #33cc33;
+         border: none;
+         color: white;
+         padding: 8px 10px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         float: right;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+         table {
+  		font-family: arial, sans-serif;
+  		border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		text-align: left;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		tr:nth-child(even) {
+ 		 background-color: #85C1E9;
+		}

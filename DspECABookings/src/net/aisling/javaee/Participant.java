@@ -13,6 +13,8 @@ public class Participant implements Serializable {
     private String firstName;
     private String lastName;
     private String schoolClass;
+    private String parentName;
+    private String telNo;
     
     public String getFirstName() {
         return firstName;
@@ -32,4 +34,17 @@ public class Participant implements Serializable {
     public void setSchoolClass(String schoolClass) {
         this.schoolClass = schoolClass;
     }
+	public String getParentName() {
+		return parentName;
+	}
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	public String getTelNo() {
+		return telNo;
+	}
+	public void setTelNo(String telNo) {
+		this.telNo = telNo;
+	}
+       
 }
