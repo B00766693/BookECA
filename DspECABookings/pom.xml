@@ -36,6 +36,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<artifactId>standard</artifactId>
 	<version>1.1.2</version>
 </dependency>
+<dependency>
+    <groupId>com.google.apis</groupId>
+    <artifactId>google-api-services-calendar</artifactId>
+    <version>v3-rev400-1.25.0</version>
+</dependency>
 
   </dependencies>
   <build>

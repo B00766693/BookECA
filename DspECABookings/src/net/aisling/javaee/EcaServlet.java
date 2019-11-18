@@ -32,9 +32,11 @@ public class EcaServlet extends HttpServlet {
 
 		        String firstName = request.getParameter("firstName");
 		        String lastName = request.getParameter("lastName");
-		        String schoolClass = request.getParameter("schoolClass");
+		        String schoolClass = request.getParameter("schoolClass"); 
 		        String parentName = request.getParameter("parentName");
 		        String telNo = request.getParameter("telNo");
+		        
+		        
 		        
 		        Participant participant = new Participant();
 		        participant.setFirstName(firstName);
@@ -50,7 +52,7 @@ public class EcaServlet extends HttpServlet {
 		            e.printStackTrace();
 		        }
 		        
-		        RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("/selectActivity.jsp");
 		        dispatcher.forward(request,response);
 }
 }

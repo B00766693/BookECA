@@ -17,9 +17,10 @@
 <a href="timetable.jsp" class="button">Timetable</a>
 <a href="classInfo.jsp" class="button">Class Info</a>
 
+
 <h2> Welcome To The DSP Extra Curricular Activities Booking System  </h2><br><br>
 
-<form action= "<%= request.getContextPath() %>/register" method="post"> <!-- NEED TO PUT ACTION STUFF IN HERE -->
+<form action= "<%= request.getContextPath() %>/register" method="post"> 
 	<fieldset>
 	<legend>Student Information:     </legend>
 	First name:  <input type="text" name="firstName" size="20" >
@@ -40,56 +41,12 @@
 </fieldset>
 
 
-
-<fieldset>
-	<legend>Classes And Activities :     </legend>
-	<table>
-  <tr>
-    <th>Day</th>
-    <th>Name</th>
-    <th>Time</th>
-    <th>Eligible</th>
-    <th>Weeks</th>
-    <th>Cost</th>
-    <th>Places</th>
-    <th>Available</th>
-    <th>Book</th>
-  </tr>
   
-  <sql:setDataSource
-        var="myDS"
-        driver="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/mysql_database"
-        user="root" password="aisling"
-    />
-
-<sql:query var="listUsers"   dataSource="${myDS}">
-        SELECT * FROM ecas;
-    </sql:query>
-  
-  <c:forEach var="user" items="${listUsers.rows}">
-                <tr>
-                    <td><c:out value="${user.dayOfWeek}" /></td>
-                    <td><c:out value="${user.activityName}" /></td>
-                    <td><c:out value="${user.classTime}" /></td>
-                    <td><c:out value="${user.eligibility}" /></td>
-                    <td><c:out value="${user.noOfWeeks}" /></td>
-                    <td><c:out value="${user.cost}" /></td>
-                    <td><c:out value="${user.maxClassSize}" /></td>
-                    <td><c:out value="${user.spacesAvailable}" /></td>
-                    <td><input type = "checkbox" name="bookingCode" value="${user.ecaCode}"></td>
-                </tr>
-            </c:forEach>
-  
-
-  </table>
-	
-</fieldset>
-
+<h4> click on submit (below) and you will be taken to the Classes and Activities page, where you can select your chosen extra curricular activities  </h4>
 <input type="submit" class="button2" value="Submit"/>
 
+<br><br>
 </form>
-
 
 </body>
 </html>
