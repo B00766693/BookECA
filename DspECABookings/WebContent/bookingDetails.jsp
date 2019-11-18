@@ -95,20 +95,6 @@ if (ecasSelected !=null){
     <th>Cost</th>
   </tr>
   
-  
-<!-- GetId -->
-<sql:query var="getId"   dataSource="${myDS}">
-        SELECT id FROM participant
-        WHERE first_name = '<%= firstName%>' AND last_name = '<%= lastName%>' ;
-    </sql:query>   
-
-
-
-
- 
- 
- 
- 
 	
 <sql:query var="bookingsMade"   dataSource="${myDS}"> 
         SELECT activityName, dayOfWeek, classTime, cost
