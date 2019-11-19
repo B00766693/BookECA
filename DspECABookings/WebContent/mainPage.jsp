@@ -20,7 +20,7 @@
 
 <h2> Welcome To The DSP Extra Curricular Activities Booking System  </h2><br><br>
 
-<form action= "<%= request.getContextPath() %>/register" method="post"> 
+<form action= "<%= request.getContextPath() %>/register" method="get"> 
 	<fieldset>
 	<legend>Student Information:     </legend>
 	First name:  <input type="text" name="firstName" size="20" >
@@ -40,7 +40,42 @@
 	Tel No.:  <input type="text" name="telNo" size="20">
 </fieldset>
 
-
+<fieldset>
+	<legend>Classes and Activities :     </legend>
+	<table>
+  <tr>
+  	<th>ActivityId</th>
+    <th>Day</th>
+    <th>Name</th>
+    <th>Time</th>
+    <th>Eligible</th>
+    <th>Weeks</th>
+    <th>Cost</th>
+    <th>Places</th>
+    <th>Available</th>
+    
+  </tr>
+  
+  <c:forEach var="activity" items="$(listActivity)">
+                <tr>
+                	<td><c:out value="${activity.aId}" /></td>
+                    <td><c:out value="${activity.dayOn}" /></td>
+                    <td><c:out value="${activity.activityName}" /></td>
+                    <td><c:out value="${activity.classTime}" /></td>
+                    <td><c:out value="${activity.eligibility}" /></td>
+                    <td><c:out value="${activity.noOfWeeks}" /></td>
+                    <td><c:out value="${activity.cost}" /></td>
+                    <td><c:out value="${activity.maxClassSize}" /></td>
+                    <td><c:out value="${activity.spacesAvailable}" /></td>
+                    
+                </tr>
+            </c:forEach>
+            
+  
+  </table>	
+</fieldset>
+  
+  
   
 <h4> click on submit (below) and you will be taken to the Classes and Activities page, where you can select your chosen extra curricular activities  </h4>
 <input type="submit" class="button2" value="Submit"/>

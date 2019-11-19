@@ -1,10 +1,9 @@
 package net.aisling.javaee;
-import java.io.Serializable;
 
-public class Activities implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	private String dayOfWeek;
+public class Activity {
+
+	private int aId;
+	private String dayOn;
 	private String activityName;
     private String classTime;
     private String eligibility;
@@ -12,30 +11,48 @@ public class Activities implements Serializable{
     private int cost;
     private int maxClassSize;
     private int spacesAvailable;
-    
-    public Activities() {
-    }
-    
-    
-    public Activities(String dayOfWeek, String activityName, String classTime, String eligibility, int noOfWeeks,
-    		int cost, int maxClassSize, int spacesAvailable) {
-    		this.dayOfWeek = dayOfWeek;
-    		this.activityName = activityName;
-    		this.classTime = classTime;
-    		this.eligibility = eligibility;
-    		this.noOfWeeks = noOfWeeks;
-    		this.cost = cost;
-    		this.maxClassSize = maxClassSize;
-    		this.spacesAvailable = spacesAvailable;
-    		}
 	
+    public Activity() {
+	}
+
+	public Activity(int aId) {
+		this.setaId(aId);
+	}
+
+	public Activity(int aId, String dayOn, String activityName, String classTime, String eligibility,
+			int noOfWeeks, int cost, int maxClassSize, int spacesAvailable) {
+		this.setaId(aId);
+		this.dayOn = dayOn;
+		this.activityName = activityName;
+		this.classTime = classTime;
+		this.eligibility = eligibility;
+		this.noOfWeeks = noOfWeeks;
+		this.cost = cost;
+		this.maxClassSize = maxClassSize;
+		this.spacesAvailable = spacesAvailable;
+	}
 	
-	public String getDayOfWeek() {
-		return dayOfWeek;
+	public Activity(String dayOn, String activityName, String classTime, String eligibility,
+			int noOfWeeks, int cost, int maxClassSize, int spacesAvailable) {
+		this.dayOn = dayOn;
+		this.activityName = activityName;
+		this.classTime = classTime;
+		this.eligibility = eligibility;
+		this.noOfWeeks = noOfWeeks;
+		this.cost = cost;
+		this.maxClassSize = maxClassSize;
+		this.spacesAvailable = spacesAvailable;
 	}
-	public void setDayOfWeek(String dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
+    
+	
+	public int getaId() {
+		return aId;
 	}
+
+	public void setaId(int aId) {
+		this.aId = aId;
+	}
+
 	public String getActivityName() {
 		return activityName;
 	}
@@ -78,6 +95,14 @@ public class Activities implements Serializable{
 	public void setSpacesAvailable(int spacesAvailable) {
 		this.spacesAvailable = spacesAvailable;
 	}
-	
+
+	public String getDayOn() {
+		return dayOn;
+	}
+
+	public void setDayOn(String dayOn) {
+		this.dayOn = dayOn;
+	}
+		
 	
 }

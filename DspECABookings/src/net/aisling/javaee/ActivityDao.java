@@ -9,9 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.aisling.javaee.Activities;
+import net.aisling.javaee.Activity;
 
 public class ActivityDao {
+	
 	private String jdbcURL;
 	private String jdbcUsername;
 	private String jdbcPassword;
@@ -40,9 +41,9 @@ public class ActivityDao {
 		}
 	}	
 	
-	public List<Activities> listAllActivities() throws SQLException {
+	public List<Activity> listAllActivities() throws SQLException {
 		
-		List<Activities> listActivities = new ArrayList<>();
+		List<Activity> listActivity = new ArrayList<>();
 		
 		String sql = "SELECT * FROM ecas";
 		
@@ -50,7 +51,8 @@ public class ActivityDao {
 		Statement statement = jdbcConnection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
-				String dayOfWeek = resultSet.getString("dayOfWeek");
+				int aId = resultSet.getInt("activityId");
+				String dayOn = resultSet.getString("dayOn");
 				String activityName = resultSet.getString("activityName");
 				String classTime = resultSet.getString("classTime");
 				String eligibility = resultSet.getString("eligibility");
@@ -58,15 +60,16 @@ public class ActivityDao {
 				int cost = resultSet.getInt("cost");
 				int maxClassSize = resultSet.getInt("maxClassSize");
 				int spacesAvailable = resultSet.getInt("spacesAvailable");
-				Activities activity = new Activities(dayOfWeek, activityName, classTime, eligibility, noOfWeeks, cost, maxClassSize, spacesAvailable);
-				listActivities.add(activity);
+				
+				Activity activity = new Activity(aId, dayOn, activityName, classTime, eligibility, noOfWeeks, cost, maxClassSize, spacesAvailable);
+				listActivity.add(activity);
 			}
 			resultSet.close();
 			statement.close();
 			
 			disconnect();
 			
-			return listActivities;
+			return listActivity;
 		}
 	
 }
