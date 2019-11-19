@@ -56,7 +56,7 @@
     
   </tr>
   
-  <c:forEach var="activity" items="$(listActivity)">
+  <c:forEach var="activity" items="${listActivity}">
                 <tr>
                 	<td><c:out value="${activity.aId}" /></td>
                     <td><c:out value="${activity.dayOn}" /></td>
