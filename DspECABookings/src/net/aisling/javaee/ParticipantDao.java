@@ -3,7 +3,11 @@ package net.aisling.javaee;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.aisling.javaee.Participant;
 
@@ -49,10 +53,11 @@ public class ParticipantDao {
                 while (t != null) {
                     System.out.println("Cause: " + t);
                     t = t.getCause();
-                }
-            }
-        }
-    }
+                }//while
+            }//if
+        }//for
+	}//printSQLException
+
 	
 	
 }
