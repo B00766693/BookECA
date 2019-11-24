@@ -49,9 +49,6 @@ public class EcaServlet extends HttpServlet {
 			case "/register":
 				submitData(request,response);
 				break;
-			case "/totalCost":	
-				calculateTotal(request,response);
-				break;
 			default:
 				listActivity(request,response);
 				break;
@@ -152,39 +149,32 @@ public class EcaServlet extends HttpServlet {
 		        List<Activity> listBookedActivity = activityDAO.listAllBookedActivities();
 				request.setAttribute("listBookedActivity",listBookedActivity);
 		        
+				String [] ecasSelected = request.getParameterValues("bookingCode");
+				int totalAmount = 0;
+				
+					if (ecasSelected !=null){
+						for(int i=0; i <ecasSelected.length; i++){
+							if (ecasSelected[i].equals("1")) 
+								totalAmount =totalAmount +70;
+							if (ecasSelected[i].equals("2")) 
+									totalAmount =totalAmount +120;
+							if (ecasSelected[i].equals("3")) 
+									totalAmount =totalAmount +70;
+							if (ecasSelected[i].equals("4")) 
+									totalAmount =totalAmount +130;
+							if (ecasSelected[i].equals("5")) 
+									totalAmount =totalAmount +115;		
+							}//for
+					}//if
+					
+				request.setAttribute("totalCost",totalAmount);
+				
+				
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
 		        dispatcher.forward(request,response);
 	}//submitData
 	
 	
-	
-	
-	private void calculateTotal(HttpServletRequest request, HttpServletResponse response)
-		    throws  ServletException, IOException {
-		
-	String [] ecasSelected = request.getParameterValues("bookingCode");
-	int totalAmount = 0;
-	
-		if (ecasSelected !=null){
-			for(int i=0; i <ecasSelected.length; i++){
-				if (ecasSelected[i].equals("1")) 
-					totalAmount =totalAmount +70;
-				if (ecasSelected[i].equals("2")) 
-						totalAmount =totalAmount +120;
-				if (ecasSelected[i].equals("3")) 
-						totalAmount =totalAmount +70;
-				if (ecasSelected[i].equals("4")) 
-						totalAmount =totalAmount +130;
-				if (ecasSelected[i].equals("5")) 
-						totalAmount =totalAmount +115;		
-				}//for
-		}//if
-		
-	request.setAttribute("totalCost",totalAmount);
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/totalCost.jsp");
-    dispatcher.forward(request,response);
-    
-	}//calculateTotal
 	
 	
 }//EcaServlet

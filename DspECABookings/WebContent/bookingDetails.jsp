@@ -45,7 +45,7 @@ out.println(firstName);
   </table>	
  </fieldset>
  <br>
- <h3>The amount due is <font color=blue> €<%= schoolClass%> <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
+ <h3>The amount due is <font color=blue>  <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
 
 <p>
 Please transfer the amount due to:<br><br>
@@ -56,5 +56,26 @@ IBAN: IEAIBK933538123456789<br>
 <br>
 Please use  <span style="font-weight:bold"><%= parentName%></span> as a reference
 </p>
+<br><br><br><br>
+Cost Page
+<br><br>
+The total cost is:
+ <%
+int totalAmount=0;
+out.println(totalAmount);
+
+%>
+<br><br>
+Total Cost: <input type="text" name="totalCost" value="${totalCost}"> <br>
+
+<br><br>
+Alternate
+<%= request.getAttribute("totalCost") %>.
+
+
+
+
+
+
 </body>
 </html>

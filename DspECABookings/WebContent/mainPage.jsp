@@ -75,18 +75,10 @@
 </fieldset>
   
   
-  
 <h4> click on submit (below) , to confirm your booking  </h4>
 <input type="submit" class="button2" value="Submit"/>
 
-
-<input type="submit" name="action" value="totalCost" />
-<br><br>
 </form>
-
-<br><br>
-
-
 
 
 </body>
