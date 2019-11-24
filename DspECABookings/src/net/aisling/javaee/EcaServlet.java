@@ -49,9 +49,6 @@ public class EcaServlet extends HttpServlet {
 			case "/register":
 				submitData(request,response);
 				break;
-			case "/loadChosenActivities":
-				submitEcaToDatabase(request,response);
-				break;
 			case "/totalCost":	
 				calculateTotal(request,response);
 				break;
@@ -161,33 +158,7 @@ private int getId(HttpServletRequest request, HttpServletResponse response)
 		return participantId;
 		}//getId()
 	
-	private void submitEcaToDatabase(HttpServletRequest request, HttpServletResponse response)
-		    throws SQLException, ServletException, IOException {
-		
-	String [] ecasSelected = request.getParameterValues("bookingCode");
-	//int participantId = getId();   //NEED TO CALL THE ABOVE METHOD AND THEN INSERT IT BELOW
 	
-		if (ecasSelected !=null){
-			for(int i=0; i <ecasSelected.length; i++){
-				String eca = ecasSelected[i];
-				int ecaConvert = Integer.parseInt(eca.trim());
-					
-			try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root", "aisling");
-			Statement st=con.createStatement();
-			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES(8, "+ecaConvert+")");
-			System.out.println("Data is successfully inserted into database.");
-			
-			}catch(Exception e){
-			System.out.println(e);
-			}
-	}
-	}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
-        dispatcher.forward(request,response);
-	}//submitEcaToDatabase
-
 	private void calculateTotal(HttpServletRequest request, HttpServletResponse response)
 		    throws  ServletException, IOException {
 		
