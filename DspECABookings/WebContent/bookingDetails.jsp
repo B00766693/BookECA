@@ -16,7 +16,7 @@
 String firstName = request.getParameter("firstName");
 String schoolClass = request.getParameter("schoolClass"); 
 String parentName = request.getParameter("parentName"); 
-int totalCost = 0;  //delare total cost variable  - how to get value?
+//int totalCost = //delare total cost variable  - how to get value?
 
 out.println(firstName);
 %></h2>
@@ -45,7 +45,7 @@ out.println(firstName);
   </table>	
  </fieldset>
  <br>
- <h3>The amount due is <font color=blue> €<%= schoolClass%> <% %> €  <%= totalCost%></font> </h3> 
+ <h3>The amount due is <font color=blue> €<%= schoolClass%> <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
 
 <p>
 Please transfer the amount due to:<br><br>
