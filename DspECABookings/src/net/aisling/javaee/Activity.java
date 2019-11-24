@@ -18,10 +18,17 @@ public class Activity {
 	public Activity(int aId) {
 		this.setaId(aId);
 	}
+	
+	public Activity(String dayOn,String activityName, String classTime, int cost  ) {
+		this.dayOn = dayOn;
+		this.activityName = activityName;
+		this.classTime = classTime;
+		this.cost = cost;
+	}
 
-	public Activity(int aId, String dayOn, String activityName, String classTime, String eligibility,
-			int noOfWeeks, int cost, int maxClassSize, int spacesAvailable) {
-		this.setaId(aId);
+	public Activity(String dayOn, String activityName, String classTime, String eligibility,
+			int noOfWeeks, int cost, int maxClassSize, int spacesAvailable, int aId) {
+		
 		this.dayOn = dayOn;
 		this.activityName = activityName;
 		this.classTime = classTime;
@@ -30,6 +37,7 @@ public class Activity {
 		this.cost = cost;
 		this.maxClassSize = maxClassSize;
 		this.spacesAvailable = spacesAvailable;
+		this.setaId(aId);
 	}
 	
 	public Activity(String dayOn, String activityName, String classTime, String eligibility,

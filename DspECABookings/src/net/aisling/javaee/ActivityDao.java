@@ -2,7 +2,6 @@ package net.aisling.javaee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -51,7 +50,6 @@ public class ActivityDao {
 		Statement statement = jdbcConnection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
-				int aId = resultSet.getInt("activityId");
 				String dayOn = resultSet.getString("dayOn");
 				String activityName = resultSet.getString("activityName");
 				String classTime = resultSet.getString("classTime");
@@ -60,8 +58,8 @@ public class ActivityDao {
 				int cost = resultSet.getInt("cost");
 				int maxClassSize = resultSet.getInt("maxClassSize");
 				int spacesAvailable = resultSet.getInt("spacesAvailable");
-				
-				Activity activity = new Activity(aId, dayOn, activityName, classTime, eligibility, noOfWeeks, cost, maxClassSize, spacesAvailable);
+				int aId = resultSet.getInt("activityId");
+				Activity activity = new Activity( dayOn, activityName, classTime, eligibility, noOfWeeks, cost, maxClassSize, spacesAvailable, aId);
 				listActivity.add(activity);
 			}
 			resultSet.close();
@@ -71,5 +69,35 @@ public class ActivityDao {
 			
 			return listActivity;
 		}
+	
+public List<Activity> listAllBookedActivities() throws SQLException {
+		
+		List<Activity> listBookedActivity = new ArrayList<>();
+		
+		String sql = "SELECT  dayOn, activityName, classTime, cost FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = 'Bob' AND last_name = 'Smith'";
+		
+		connect();
+		Statement statement = jdbcConnection.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				String dayOn = resultSet.getString("dayOn");
+				String activityName = resultSet.getString("activityName");
+				String classTime = resultSet.getString("classTime");
+				int cost = resultSet.getInt("cost");
+				
+				Activity activity = new Activity(dayOn, activityName, classTime, cost);
+				listBookedActivity.add(activity);
+			}
+			resultSet.close();
+			statement.close();
+			
+			disconnect();
+			
+			return listBookedActivity;
+		}
+	
+	
+	
+	
 	
 }

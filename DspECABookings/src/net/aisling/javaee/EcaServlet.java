@@ -3,10 +3,13 @@ package net.aisling.javaee;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +49,12 @@ public class EcaServlet extends HttpServlet {
 			case "/register":
 				submitData(request,response);
 				break;
+			case "/loadChosenActivities":
+				submitEcaToDatabase(request,response);
+				break;
+			case "/totalCost":	
+				calculateTotal(request,response);
+				break;
 			default:
 				listActivity(request,response);
 				break;
@@ -62,13 +71,21 @@ public class EcaServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/mainPage.jsp");
         dispatcher.forward(request,response);
 	}//listActivity
+	
+	private void listBookedActivity(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, ServletException, IOException {
+		List<Activity> listBookedActivity = activityDAO.listAllBookedActivities();
+		request.setAttribute("listBookedActivity",listBookedActivity);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
+        dispatcher.forward(request,response);
+	}//listBookedActivity
 		       
 	private void submitData(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
 		
 	participantDao = new ParticipantDao();
 	
-	String firstName = request.getParameter("firstName");
+				String firstName = request.getParameter("firstName");
 		        String lastName = request.getParameter("lastName");
 		        String schoolClass = request.getParameter("schoolClass"); 
 		        String parentName = request.getParameter("parentName");
@@ -88,7 +105,115 @@ public class EcaServlet extends HttpServlet {
 		            e.printStackTrace();
 		        }
 		        
+		        finally {
+		        	String [] ecasSelected = request.getParameterValues("bookingCode");
+		        	//int participantId = getId();   //NEED TO CALL THE ABOVE METHOD AND THEN INSERT IT BELOW
+		        	
+		        		if (ecasSelected !=null){
+		        			for(int i=0; i <ecasSelected.length; i++){
+		        				String eca = ecasSelected[i];
+		        				int ecaConvert = Integer.parseInt(eca.trim());
+		        					
+		        			try{
+		        			Class.forName("com.mysql.jdbc.Driver");
+		        			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root", "aisling");
+		        			Statement st=con.createStatement();
+		        			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES(11, "+ecaConvert+")");
+		        			System.out.println("Data is successfully inserted into database.");
+		        			
+		        			}catch(Exception e){
+		        			System.out.println(e);
+		        			}
+		        	}
+		        	}
+		        }//finally
+		        
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
 		        dispatcher.forward(request,response);
 	}//submitData
-}
+	
+	
+private int getId(HttpServletRequest request, HttpServletResponse response) 
+		throws SQLException, ServletException, IOException {
+		
+		int participantId = 0;
+		String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+		
+		try {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "aisling");
+
+		String sql = "SELECT id FROM participant WHERE first_name = '"+firstName+"' AND last_name = '"+lastName+"'";
+
+		Statement statement = con.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+			if(resultSet.next()) {
+				participantId = resultSet.getInt("id");
+			}
+			resultSet.close();
+			statement.close();
+				
+	} catch(Exception e) {
+		System.out.println(e);
+	}
+		return participantId;
+		}//getId()
+	
+	private void submitEcaToDatabase(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, ServletException, IOException {
+		
+	String [] ecasSelected = request.getParameterValues("bookingCode");
+	//int participantId = getId();   //NEED TO CALL THE ABOVE METHOD AND THEN INSERT IT BELOW
+	
+		if (ecasSelected !=null){
+			for(int i=0; i <ecasSelected.length; i++){
+				String eca = ecasSelected[i];
+				int ecaConvert = Integer.parseInt(eca.trim());
+					
+			try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root", "aisling");
+			Statement st=con.createStatement();
+			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES(8, "+ecaConvert+")");
+			System.out.println("Data is successfully inserted into database.");
+			
+			}catch(Exception e){
+			System.out.println(e);
+			}
+	}
+	}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
+        dispatcher.forward(request,response);
+	}//submitEcaToDatabase
+
+	private void calculateTotal(HttpServletRequest request, HttpServletResponse response)
+		    throws  ServletException, IOException {
+		
+	String [] ecasSelected = request.getParameterValues("bookingCode");
+	int totalAmount = 0;
+	
+		if (ecasSelected !=null){
+			for(int i=0; i <ecasSelected.length; i++){
+				if (ecasSelected[i].equals("1")) 
+					totalAmount =totalAmount +70;
+				if (ecasSelected[i].equals("2")) 
+						totalAmount =totalAmount +120;
+				if (ecasSelected[i].equals("3")) 
+						totalAmount =totalAmount +70;
+				if (ecasSelected[i].equals("4")) 
+						totalAmount =totalAmount +130;
+				if (ecasSelected[i].equals("5")) 
+						totalAmount =totalAmount +115;		
+				}//for
+		}//if
+		
+	request.setAttribute("totalCost",totalAmount);
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/totalCost.jsp");
+    dispatcher.forward(request,response);
+    
+	}//calculateTotal
+	
+	
+}//EcaServlet

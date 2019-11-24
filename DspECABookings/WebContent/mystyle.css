@@ -17,6 +17,9 @@
   		left: 205px;
   		top: 38px;
 		}
+		h3{
+		style= text-align:center;
+		}
 		.button2{
          background-color: #33cc33;
          border: none;

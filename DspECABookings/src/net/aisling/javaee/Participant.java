@@ -10,13 +10,35 @@ public class Participant implements Serializable {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private int id;
     private String firstName;
     private String lastName;
     private String schoolClass;
     private String parentName;
     private String telNo;
     
-    public String getFirstName() {
+    public Participant() {	
+    }
+    
+    public Participant(int id) {
+		this.id = id;
+	}
+    
+	public Participant(String firstName, String lastName, String schoolClass, String parentName, String telNo) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.schoolClass = schoolClass;
+		this.parentName = parentName;
+		this.telNo = telNo;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getFirstName() {
         return firstName;
     }
     public void setFirstName(String firstName) {
