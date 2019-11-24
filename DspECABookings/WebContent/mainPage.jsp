@@ -28,14 +28,14 @@
 	First name:  <input type="text" name="firstName" size="20" >
 	Last name:  <input type="text" name="lastName" size="20">
 	<select name="schoolClass">
-		<option value ="junior">Junior Infants</option>
-		<option value ="senior">Senior Infants</option>
-		<option value ="first">First Class</option>
-		<option value ="second">Second Class</option>
-		<option value ="third">Third Class</option>
-		<option value ="fourth">Fourth Class</option>
-		<option value ="fifth">Fifth Class</option>
-		<option value ="sixth">Sixth Class</option>
+		<option value ="Junior Infants">Junior Infants</option>
+		<option value ="Senior Infants">Senior Infants</option>
+		<option value ="First Class">First Class</option>
+		<option value ="Second Class">Second Class</option>
+		<option value ="Third Class">Third Class</option>
+		<option value ="Fourth Class">Fourth Class</option>
+		<option value ="Fifth Class">Fifth Class</option>
+		<option value ="Sixth Class">Sixth Class</option>
 	</select>
 	<br><br>
 	Parent name:  <input type="text" name="parentName" size="20" >

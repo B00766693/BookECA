@@ -11,18 +11,13 @@
 </head>
 <body>
 <h1>Booking is Successful</h1>
-<br><br>
-<h2>You have booked <%
+ <%
 String firstName = request.getParameter("firstName");
 String schoolClass = request.getParameter("schoolClass"); 
 String parentName = request.getParameter("parentName"); 
-//int totalCost = //delare total cost variable  - how to get value?
+%> 
+<h2>You have booked <font color=green> <%= firstName%> </font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h2>
 
-out.println(firstName);
-%></h2>
-
-<br><br>
-<p>Your booking for <%= firstName%>  <% %>  <% %>of <%= schoolClass%> into ;</p>
 
 <fieldset>
 	<legend>Classes and Activities :  Booked   </legend>
@@ -45,7 +40,7 @@ out.println(firstName);
   </table>	
  </fieldset>
  <br>
- <h3>The amount due is <font color=blue>  <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
+ <h3>The total amount due is <font color=blue>  <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
 
 <p>
 Please transfer the amount due to:<br><br>
@@ -54,27 +49,8 @@ Allied Irish Banks<br>
 21 Castle Street Dalkey<br>
 IBAN: IEAIBK933538123456789<br>
 <br>
-Please use  <span style="font-weight:bold"><%= parentName%></span> as a reference
+Please use  <span style="font-weight:bold"><%= parentName%></span> as a reference in your bank transfer.
 </p>
-<br><br><br><br>
-Cost Page
-<br><br>
-The total cost is:
- <%
-int totalAmount=0;
-out.println(totalAmount);
-
-%>
-<br><br>
-Total Cost: <input type="text" name="totalCost" value="${totalCost}"> <br>
-
-<br><br>
-Alternate
-<%= request.getAttribute("totalCost") %>.
-
-
-
-
 
 
 </body>
