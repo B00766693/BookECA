@@ -59,6 +59,31 @@ public class ParticipantDao {
         }//for
 	}//printSQLException
 
+	//int method to get participant 
+	public static int getId(String pFirstName, String pLastName) 
+			throws SQLException {
+			
+			int participantId = 0;
+			
+			try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager
+	                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "aisling");
 
+			String sql = "SELECT id FROM participant WHERE first_name = '"+pFirstName+"' AND last_name = '"+pLastName+"'";
+
+			Statement statement = con.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+				if(resultSet.next()) {
+					participantId = resultSet.getInt("id");
+				}
+				resultSet.close();
+				statement.close();
+					
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+			return participantId;
+			}//getId()
 	
 }

@@ -10,6 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="timetable.jsp" class="button">Add Details to Calendar</a>
+<a href="mainPage.jsp" class="button">Book Another Child</a>
+
 <h1>Booking is Successful</h1>
  <%
 String firstName = request.getParameter("firstName");

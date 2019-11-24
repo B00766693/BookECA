@@ -95,9 +95,5 @@ public List<Activity> listAllBookedActivities(String pFirstName, String pLastNam
 			
 			return listBookedActivity;
 		}
-	
-	
-	
-	
-	
+		
 }
