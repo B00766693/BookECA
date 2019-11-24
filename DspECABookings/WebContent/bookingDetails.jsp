@@ -16,7 +16,7 @@ String firstName = request.getParameter("firstName");
 String schoolClass = request.getParameter("schoolClass"); 
 String parentName = request.getParameter("parentName"); 
 %> 
-<h2>You have booked <font color=green> <%= firstName%> </font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h2>
+<h3>You have booked <font color=green> <%= firstName%> </font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h3>
 
 
 <fieldset>

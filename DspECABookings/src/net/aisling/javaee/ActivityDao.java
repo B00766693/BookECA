@@ -70,11 +70,11 @@ public class ActivityDao {
 			return listActivity;
 		}
 	
-public List<Activity> listAllBookedActivities() throws SQLException {
+public List<Activity> listAllBookedActivities(String pFirstName, String pLastName) throws SQLException {
 		
 		List<Activity> listBookedActivity = new ArrayList<>();
-		
-		String sql = "SELECT  dayOn, activityName, classTime, cost FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = 'Bob' AND last_name = 'Smith'";
+        
+		String sql = "SELECT  dayOn, activityName, classTime, cost FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = '"+pFirstName+"' AND last_name = '"+pLastName+"'";
 		
 		connect();
 		Statement statement = jdbcConnection.createStatement();

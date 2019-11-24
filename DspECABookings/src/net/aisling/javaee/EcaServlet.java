@@ -146,9 +146,10 @@ public class EcaServlet extends HttpServlet {
 		        }//finally
 		        
 		        
-		        List<Activity> listBookedActivity = activityDAO.listAllBookedActivities();
+		        List<Activity> listBookedActivity = activityDAO.listAllBookedActivities(firstName,lastName );
 				request.setAttribute("listBookedActivity",listBookedActivity);
 		        
+				//Get the total amount due
 				String [] ecasSelected = request.getParameterValues("bookingCode");
 				int totalAmount = 0;
 				
