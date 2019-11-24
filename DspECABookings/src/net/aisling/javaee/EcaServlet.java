@@ -115,7 +115,7 @@ public class EcaServlet extends HttpServlet {
 		        			Class.forName("com.mysql.jdbc.Driver");
 		        			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root", "aisling");
 		        			Statement st=con.createStatement();
-		        			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES(11, "+ecaConvert+")");
+		        			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES(12, "+ecaConvert+")");
 		        			System.out.println("Data is successfully inserted into database.");
 		        			
 		        			}catch(Exception e){
