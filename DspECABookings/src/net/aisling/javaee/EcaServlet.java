@@ -69,13 +69,7 @@ public class EcaServlet extends HttpServlet {
         dispatcher.forward(request,response);
 	}//listActivity
 	
-	private void listBookedActivity(HttpServletRequest request, HttpServletResponse response)
-		    throws SQLException, ServletException, IOException {
-		List<Activity> listBookedActivity = activityDAO.listAllBookedActivities();
-		request.setAttribute("listBookedActivity",listBookedActivity);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
-        dispatcher.forward(request,response);
-	}//listBookedActivity
+	
 		       
 	private void submitData(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
@@ -95,6 +89,7 @@ public class EcaServlet extends HttpServlet {
 		        participant.setParentName(parentName);
 		        participant.setTelNo(telNo);
 		        
+		        //submit participant details to database
 		        try {
 		            participantDao.registerParticipant(participant);
 		        } catch (Exception e) {
@@ -103,7 +98,7 @@ public class EcaServlet extends HttpServlet {
 		        }
 		        
 		        finally {
-		        	
+		        //Get the participant ID to insert into the if statement below
 		        	int participantId = 0;
 		    		String firstNameAgain = request.getParameter("firstName");
 		            String lastNameAgain = request.getParameter("lastName");
@@ -128,14 +123,11 @@ public class EcaServlet extends HttpServlet {
 		    	}//catch
 		    		
 		    		
-		        	
-	
-		        	//Submitting the Id & Activities selected to the bridge table
+		        //Submitting the Id & Activities selected to the bridge table
 		        	if (participantId > 0) {
 		        	
 		        	String [] ecasSelected = request.getParameterValues("bookingCode");
-		        	
-		        	
+		        	      	
 		        		if (ecasSelected !=null){
 		        			for(int i=0; i <ecasSelected.length; i++){
 		        				String eca = ecasSelected[i];
@@ -156,38 +148,15 @@ public class EcaServlet extends HttpServlet {
 		        	}//if
 		        }//finally
 		        
+		        
+		        List<Activity> listBookedActivity = activityDAO.listAllBookedActivities();
+				request.setAttribute("listBookedActivity",listBookedActivity);
+		        
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
 		        dispatcher.forward(request,response);
 	}//submitData
 	
 	
-private int getId(HttpServletRequest request, HttpServletResponse response) 
-		throws SQLException, ServletException, IOException {
-		
-		int participantId = 0;
-		String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-		
-		try {
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "aisling");
-
-		String sql = "SELECT id FROM participant WHERE first_name = '"+firstName+"' AND last_name = '"+lastName+"'";
-
-		Statement statement = con.createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
-			if(resultSet.next()) {
-				participantId = resultSet.getInt("id");
-			}
-			resultSet.close();
-			statement.close();
-				
-	} catch(Exception e) {
-		System.out.println(e);
-	}
-		return participantId;
-		}//getId()
 	
 	
 	private void calculateTotal(HttpServletRequest request, HttpServletResponse response)
