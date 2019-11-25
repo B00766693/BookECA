@@ -113,7 +113,8 @@ public class EcaServlet extends HttpServlet {
 		        			Statement st=con.createStatement();
 		        			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES("+participantId+", "+ecaConvert+")");
 		        			System.out.println("Data is successfully inserted into database.");
-		        			
+		        			int ib=st.executeUpdate("UPDATE ecas SET spacesAvailable = spacesAvailable - 1 WHERE activityId = "+ecaConvert+" ");
+		        			System.out.println("Spaces Available have been updatd in database.");
 		        			}catch(Exception e){
 		        			System.out.println(e);
 		        			}
