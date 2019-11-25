@@ -9,11 +9,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mystyle.css">
+<link   href="asset/css/style.css" rel="stylesheet">
+
 <title>DSP ECA Booking</title>
 </head>
 <body>
-<img src="images/2465.jpg" alt="DSP Logo" width="175" height="100" >
+<img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
 <a href="timetable.jsp" class="button">Timetable</a>
 <a href="classInfo.jsp" class="button">Class Info</a>
 
@@ -46,7 +47,6 @@
 	<legend>Classes and Activities :     </legend>
 	<table>
   <tr>
-  	<th>ActivityId</th>
     <th>Day</th>
     <th>Name</th>
     <th>Time</th>
@@ -55,7 +55,7 @@
     <th>Cost</th>
     <th>Places</th>
     <th>Available</th>
-    
+    <th>Book</th>
   </tr>
   
   <c:forEach var="activity" items="${listActivity}">
@@ -65,7 +65,7 @@
                     <td><c:out value="${activity.classTime}" /></td>
                     <td><c:out value="${activity.eligibility}" /></td>
                     <td><c:out value="${activity.noOfWeeks}" /></td>
-                    <td><c:out value="${activity.cost}" /></td>
+                    <td>€<c:out value="${activity.cost}" /></td>
                     <td><c:out value="${activity.maxClassSize}" /></td>
                     <td><c:out value="${activity.spacesAvailable}" /></td>
                     <td><input type= "checkbox" name="bookingCode" value="${activity.aId}" /></td>
@@ -73,7 +73,6 @@
             </c:forEach>
   </table>	
 </fieldset>
-  
   
 <h4> click on submit (below) , to confirm your booking  </h4>
 <input type="submit" class="button2" value="Submit"/>

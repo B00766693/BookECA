@@ -59,6 +59,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
         </configuration>
+        
       </plugin>
     </plugins>
   </build>
