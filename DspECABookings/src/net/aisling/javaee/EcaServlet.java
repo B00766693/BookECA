@@ -95,16 +95,14 @@ public class EcaServlet extends HttpServlet {
 		        }
 		        
 		        finally {
-		        //Get the participant ID to insert into the if statement below
+		        	//Get the participant ID to insert into the if statement below
 		        	int participantId = ParticipantDao.getId(firstName,lastName);
-		        	
-		    		
-		        //Submitting the Id & Activities selected to the bridge table
-		        	if (participantId > 0) {
+		        		
+		        	//Submitting the Id & Activities selected to the bridge table
 		        	
 		        	String [] ecasSelected = request.getParameterValues("bookingCode");
 		        	      	
-		        		if (ecasSelected !=null){
+		        		if ((participantId > 0) && (ecasSelected !=null)){
 		        			for(int i=0; i <ecasSelected.length; i++){
 		        				String eca = ecasSelected[i];
 		        				int ecaConvert = Integer.parseInt(eca.trim());
@@ -121,10 +119,10 @@ public class EcaServlet extends HttpServlet {
 		        			}
 		        	}
 		        	}
-		        	}//if
+		        	
 		        }//finally
 		        
-		        
+		        //create list of all activities inserted to database under participant id
 		        List<Activity> listBookedActivity = activityDAO.listAllBookedActivities(firstName,lastName );
 				request.setAttribute("listBookedActivity",listBookedActivity);
 		        
