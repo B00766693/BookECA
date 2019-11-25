@@ -33,18 +33,84 @@
          margin: 4px 2px;
          cursor: pointer;
          }
+         .button3{
+         background-color: #cc33b8;
+         border: none;
+         color: white;
+         padding: 8px 10px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         float: right;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
          table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
  		 width: 100%;
 		}
 
-		td, th {
+		
+		th {
   		text-align: left;
   		padding: 8px;
   		font-size: 12px;
 		}
 		
+		td:nth-child(1) {
+  		text-align: left;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(2) {
+  		text-align: left;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(3) {
+  		text-align: left;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(4) {
+  		text-align: left;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(5){
+  		text-align: center;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(6){
+  		text-align: center;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(7){
+  		text-align: center;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		
+		td:nth-child(8){
+  		text-align: center;
+  		padding: 8px;
+  		font-size: 12px;
+		}
+		td:nth-child(9){
+  		text-align: center;
+  		padding: 8px;
+  		font-size: 12px;
+		}
 		tr:nth-child(even) {
  		 background-color: #85C1E9;
 		}

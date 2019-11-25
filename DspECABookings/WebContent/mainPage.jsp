@@ -66,7 +66,7 @@
                     <td><c:out value="${activity.eligibility}" /></td>
                     <td><c:out value="${activity.noOfWeeks}" /></td>
                     <td>€<c:out value="${activity.cost}" /></td>
-                    <td><c:out value="${activity.maxClassSize}" /></td>
+                    <td><c:out value="${activity.maxClassSize}" /> </td>
                     <td><c:out value="${activity.spacesAvailable}" /></td>
                     <td><input type= "checkbox" name="bookingCode" value="${activity.aId}" /></td>
                 </tr>

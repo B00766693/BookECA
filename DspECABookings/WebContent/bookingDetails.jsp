@@ -5,13 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="mystyle.css">
+<link   href="asset/css/style.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<a href="timetable.jsp" class="button">Add Details to Calendar - placeholder of timetable.jsp</a>
-<a href=<%= request.getContextPath() %>/register" class="button">Book Another Child</a>
+<img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
+<a href="timetable.jsp" class="button3">Add Details to Calendar - placeholder of timetable.jsp</a>
+<a href=<%= request.getContextPath() %>/register" class="button2">Book Another Child</a>
 
 <h1>Booking is Successful</h1>
  <%
@@ -37,7 +38,7 @@ String parentName = request.getParameter("parentName");
                     <td><c:out value="${activity.dayOn}" /></td>
                     <td><c:out value="${activity.activityName}" /></td>
                     <td><c:out value="${activity.classTime}" /></td>
-                    <td><c:out value="${activity.cost}" /></td>
+                    <td>€<c:out value="${activity.cost}" /></td>
                 </tr>
             </c:forEach>
   </table>	
