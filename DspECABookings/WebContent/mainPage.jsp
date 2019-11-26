@@ -26,8 +26,8 @@
 <form  action= "<%= request.getContextPath() %>/register" method="get">
 	<fieldset>
 	<legend>Student Information:     </legend>
-	First name:  <input type="text" name="firstName" size="20" >
-	Last name:  <input type="text" name="lastName" size="20">
+	First name*:  <input type="text" name="firstName" size="20" required >
+	Last name*:  <input type="text" name="lastName" size="20" required>
 	<select name="schoolClass">
 		<option value ="Junior Infants">Junior Infants</option>
 		<option value ="Senior Infants">Senior Infants</option>
@@ -39,8 +39,9 @@
 		<option value ="Sixth Class">Sixth Class</option>
 	</select>
 	<br><br>
-	Parent name:  <input type="text" name="parentName" size="20" >
-	Tel No.:  <input type="text" name="telNo" size="20">
+	Parent name*:  <input type="text" name="parentName" size="20" required >
+	<div class="tooltip">Mobile No.*:<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="telNo" size="20" pattern="[0-9]{10}" required> <small>Format: 08xxxxxxxx (no spaces)</small>
+	</div>
 </fieldset>
 
 <fieldset>

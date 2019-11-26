@@ -1,4 +1,27 @@
+	.tooltip {
+  position: relative;
+  display: inline-block;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: magenta;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
          .button {
          background-color: #1c87c9;
          border: none;
@@ -46,7 +69,7 @@
          margin: 4px 2px;
          cursor: pointer;
          }
-         table {
+        table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
  		 width: 100%;
