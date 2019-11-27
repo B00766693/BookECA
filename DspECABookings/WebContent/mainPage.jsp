@@ -28,7 +28,7 @@
 	<legend>Student Information:     </legend>
 	First name*:  <input type="text" name="firstName" size="20" required >
 	Last name*:  <input type="text" name="lastName" size="20" required>
-	<select name="schoolClass">
+	<select name="schoolClass" id="schoolClass">
 		<option value ="Junior Infants">Junior Infants</option>
 		<option value ="Senior Infants">Senior Infants</option>
 		<option value ="First Class">First Class</option>
@@ -40,7 +40,7 @@
 	</select>
 	<br><br>
 	Parent name*:  <input type="text" name="parentName" size="20" required >
-	<div class="tooltip">Mobile No.*:<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="telNo" size="20" pattern="[0-9]{10}" required> <small>Format: 08xxxxxxxx (no spaces)</small>
+	<div class="tooltip">Mobile No.*:<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="telNo" size="20" pattern="[0-9]{10}"> <small>Format: 08xxxxxxxx (no spaces)</small>
 	</div>
 </fieldset>
 
@@ -69,7 +69,7 @@
                     <td>€<c:out value="${activity.cost}" /></td>
                     <td><c:out value="${activity.maxClassSize}" /> </td>
                     <td><c:out value="${activity.spacesAvailable}" /></td>
-                    <td><input type= "checkbox" name="bookingCode" value="${activity.aId}" /></td>
+                    <td><input type= "checkbox" name="bookingCode" id="bookingCode" value="${activity.aId}" onclick="ValidateActivitySelection();"/></td>
                 </tr>
             </c:forEach>
   </table>	
@@ -79,6 +79,36 @@
 <input type="submit" class="button2" value="Submit"/>
 
 </form>
+
+<script type="text/javascript">  
+function ValidateActivitySelection() {
+	
+	var checkboxes = document.getElementsByName("bookingCode");
+	var chosenActivity;
+	var schoolClass = document.getElementById("schoolClass").value;
+	
+	for(var i = 0; i < checkboxes.length; i++)   {  
+        if(checkboxes[i].checked)  {
+        	chosenActivity = (checkboxes[i].value);
+        		if ((chosenActivity == 1) && ((schoolClass != "First Class") || (schoolClass != "Second Class"))){
+        			alert("Only 1st & 2nd class eligible for Monday Basketball.  Please unclick selection"); 
+        			}
+        		else {
+        			if((chosenActivity == 3) && (schoolClass != "Third Class")){
+            			alert("Only 3rd class eligible for Wednesday Basketball. Please unclick selection"); 
+        			}
+        			else{
+        				if (((chosenActivity == 5) || (chosenActivity == 2))&& ((schoolClass == "Junior Infants") || (schoolClass == "Senior Infants")) ){
+            			alert(" Junior & Senior Infants are not eligible for Arts & Crafts or Hockey. Please unclick selection"); 
+            			}
+     				}
+				}
+		}
+	}
+}
+
+</script>
+
 
 
 </body>
