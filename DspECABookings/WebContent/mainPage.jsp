@@ -91,15 +91,18 @@ function ValidateActivitySelection() {
         if(checkboxes[i].checked)  {
         	chosenActivity = (checkboxes[i].value);
         		if ((chosenActivity == 1) && ((schoolClass != "First Class") || (schoolClass != "Second Class"))){
-        			alert("Only 1st & 2nd class eligible for Monday Basketball.  Please unclick selection"); 
+        			checkboxes[i].checked = false;
+        			alert("Only 1st & 2nd class eligible for Monday Basketball"); 
         			}
         		else {
         			if((chosenActivity == 3) && (schoolClass != "Third Class")){
-            			alert("Only 3rd class eligible for Wednesday Basketball. Please unclick selection"); 
+        				checkboxes[i].checked = false;
+        				alert("Only 3rd class eligible for Wednesday Basketball"); 
         			}
         			else{
         				if (((chosenActivity == 5) || (chosenActivity == 2))&& ((schoolClass == "Junior Infants") || (schoolClass == "Senior Infants")) ){
-            			alert(" Junior & Senior Infants are not eligible for Arts & Crafts or Hockey. Please unclick selection"); 
+        					checkboxes[i].checked = false;
+        					alert(" Junior & Senior Infants are not eligible for Arts & Crafts or Hockey"); 
             			}
      				}
 				}
