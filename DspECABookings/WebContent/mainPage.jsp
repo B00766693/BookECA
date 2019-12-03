@@ -15,7 +15,7 @@
 </head>
 <body>
 <img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
-<a href="timetable.jsp" class="button">Timetable</a>
+<a href="<%= request.getContextPath() %>/download" class="button">Timetable</a>
 <a href="classInfo.jsp" class="button">Class Info</a>
 
 

@@ -1,6 +1,8 @@
 package net.aisling.javaee;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.sql.Connection;
@@ -49,6 +51,9 @@ public class EcaServlet extends HttpServlet {
 			case "/register":
 				submitData(request,response);
 				break;
+			case "/download":
+				download(request,response);
+				break;
 			default:
 				listActivity(request,response);
 				break;
@@ -66,6 +71,23 @@ public class EcaServlet extends HttpServlet {
         dispatcher.forward(request,response);
 	}//listActivity
 	
+	private void download(HttpServletRequest request, HttpServletResponse response)
+		    throws ServletException, IOException {
+		response.setContentType("text/html");  
+	      PrintWriter out = response.getWriter();  
+	      String filename = "2020Timetable.pdf";   
+	      String filepath = "/Users/aislingobroin/Desktop/Project/";  
+	      response.setContentType("APPLICATION/OCTET-STREAM");   
+	      response.setHeader("Content-Disposition","inline; filename=\"" + filename + "\"");
+	      FileInputStream fileInputStream = new FileInputStream(filepath + filename);  
+	                  
+	      int i;   
+	      while ((i=fileInputStream.read()) != -1) {  
+	      out.write(i);   
+	      }   
+	      fileInputStream.close();   
+	      out.close();   
+	  }//download  
 	
 		       
 	private void submitData(HttpServletRequest request, HttpServletResponse response)
