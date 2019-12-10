@@ -17,11 +17,9 @@
 <img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
 <a href="<%= request.getContextPath() %>/download" class="button">Timetable</a>
 <a href="classInfo.jsp" class="button">Class Info</a>
-
+<a href="codeOfConduct.jsp" class="button">Code of Conduct</a>
 
 <h2> Welcome To The DSP Extra Curricular Activities Booking System  </h2><br><br>
-
-
 
 <form  action= "<%= request.getContextPath() %>/register" method="get">
 	<fieldset>
@@ -41,6 +39,12 @@
 	<br><br>
 	Parent name*:  <input type="text" name="parentName" size="20" required >
 	<div class="tooltip">Mobile No.*:<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="telNo" size="20" pattern="[0-9]{10}"> <small>Format: 08xxxxxxxx (no spaces)</small>
+	</div>
+	<br><br>
+	<label for="conduct">Agree to the Code of Conduct*:</label>  <input type= "checkbox" id="conduct" name="conduct" required> 	<br><br>
+	Medical Information and/or Additional Needs*:  <input type="text" name="medInfo" size="100" required ><br><br>
+	
+	<div class="tooltip">Emergency Mobile No.* (alternate number):<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="AlternateTelNo" size="20" pattern="[0-9]{10}"> <small>Format: 08xxxxxxxx (no spaces)</small>
 	</div>
 </fieldset>
 
@@ -80,6 +84,11 @@
 
 </form>
 
+<footer>
+Contact Details:  Aisling 0861234567 and Barry 0871234567<br>
+Email:  dspns.eca@gmail.com  
+</footer>
+
 <script type="text/javascript">  
 function ValidateActivitySelection() {
 	
@@ -109,8 +118,6 @@ function ValidateActivitySelection() {
 		}
 	}
 }
-
-</script>
 
 
 
