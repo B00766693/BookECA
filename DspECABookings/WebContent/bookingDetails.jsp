@@ -76,8 +76,8 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '677166826089-eh87ib5vrb7c771s8l18f4f933q9ii43.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyDosdN7907ErYaER9OT_rm6hbSbBjIq-lg';
+      var CLIENT_ID = '';
+      var API_KEY = '';
       //variables to use in if statement
       
 	
