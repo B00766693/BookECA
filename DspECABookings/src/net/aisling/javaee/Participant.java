@@ -16,6 +16,8 @@ public class Participant implements Serializable {
     private String schoolClass;
     private String parentName;
     private String telNo;
+    private String medInfo;
+    private String emergNo;
     
     public Participant() {	
     }
@@ -24,12 +26,14 @@ public class Participant implements Serializable {
 		this.id = id;
 	}
     
-	public Participant(String firstName, String lastName, String schoolClass, String parentName, String telNo) {
+	public Participant(String firstName, String lastName, String schoolClass, String parentName, String telNo, String medInfo, String emergNo) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.schoolClass = schoolClass;
 		this.parentName = parentName;
 		this.telNo = telNo;
+		this.medInfo = medInfo;
+		this.emergNo = emergNo;
 	}
 
 	public int getId() {
@@ -67,6 +71,22 @@ public class Participant implements Serializable {
 	}
 	public void setTelNo(String telNo) {
 		this.telNo = telNo;
+	}
+
+	public String getMedInfo() {
+		return medInfo;
+	}
+
+	public void setMedInfo(String medInfo) {
+		this.medInfo = medInfo;
+	}
+
+	public String getEmergNo() {
+		return emergNo;
+	}
+
+	public void setEmergNo(String emergNo) {
+		this.emergNo = emergNo;
 	}
        
 }

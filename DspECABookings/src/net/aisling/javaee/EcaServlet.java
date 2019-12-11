@@ -100,6 +100,8 @@ public class EcaServlet extends HttpServlet {
 		        String schoolClass = request.getParameter("schoolClass"); 
 		        String parentName = request.getParameter("parentName");
 		        String telNo = request.getParameter("telNo");
+		        String medInfo  = request.getParameter("medInfo");
+		        String emergNo  = request.getParameter("AlternateTelNo");
 		        
 		        Participant participant = new Participant();
 		        participant.setFirstName(firstName);
@@ -107,6 +109,8 @@ public class EcaServlet extends HttpServlet {
 		        participant.setSchoolClass(schoolClass);
 		        participant.setParentName(parentName);
 		        participant.setTelNo(telNo);
+		        participant.setMedInfo(medInfo);
+		        participant.setEmergNo(emergNo);
 		        
 		        //submit participant details to database
 		        try {
