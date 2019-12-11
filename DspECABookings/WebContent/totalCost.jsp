@@ -7,6 +7,7 @@
 <title>Cost Test</title>
 </head>
 <body>
+DOING AN ADDED CHANGED HERE FOR TEST TO GITHUB
 Cost Page
 <br><br>
 The total cost is:
