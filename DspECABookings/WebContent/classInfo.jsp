@@ -7,6 +7,8 @@
 <title>Class Details</title>
 </head>
 <body>
+<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
+
 <h1>FREQUENTLY ASKED QUESTIONS</h1>
 
 <h3>How do I book ECAs this term?</h3>

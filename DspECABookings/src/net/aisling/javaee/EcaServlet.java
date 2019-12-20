@@ -1,5 +1,6 @@
 package net.aisling.javaee;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,15 +13,20 @@ import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.aisling.javaee.Participant;
-import net.aisling.javaee.ParticipantDao;
+
 import net.aisling.javaee.Activity;
 import net.aisling.javaee.ActivityDao;
+import net.aisling.javaee.Participant;
+import net.aisling.javaee.ParticipantDao;
+import net.aisling.javaee.EmailUtility;
+
+
 
 /**
  * Servlet implementation class EcaServlet
@@ -30,6 +36,10 @@ public class EcaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ParticipantDao participantDao;
 	private ActivityDao activityDAO;
+	private String host;
+    private String port;
+    private String user;
+    private String pass;
 	
 	public void init() {
 		String jdbcURL = "jdbc:mysql://localhost:3306/mysql_database?useSSL=false" ;
@@ -37,6 +47,13 @@ public class EcaServlet extends HttpServlet {
 		String jdbcPassword = "aisling" ;
 		
 		activityDAO = new ActivityDao(jdbcURL, jdbcUsername, jdbcPassword);
+		
+		// reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+        user = context.getInitParameter("user");
+        pass = context.getInitParameter("pass");
 		
     }
        
@@ -54,6 +71,9 @@ public class EcaServlet extends HttpServlet {
 			case "/download":
 				download(request,response);
 				break;
+			case "/email":
+				email(request,response);
+				break;	
 			default:
 				listActivity(request,response);
 				break;
@@ -62,6 +82,30 @@ public class EcaServlet extends HttpServlet {
            throw new ServletException(ex);
 		}//catch
 	}//doGet
+	
+	private void email(HttpServletRequest request, HttpServletResponse response)
+		    throws ServletException, IOException{
+		// reads form fields
+        String recipient = request.getParameter("recipient");
+        String subject = request.getParameter("subject");
+        String content = request.getParameter("content");
+ 
+        String resultMessage = "";
+ 
+        try {
+            EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
+                    content);
+            resultMessage = "The e-mail was sent successfully";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            resultMessage = "There were an error: " + ex.getMessage();
+        } finally {
+            request.setAttribute("MessageEmail", resultMessage);
+            getServletContext().getRequestDispatcher("/bookingDetails.jsp").forward(
+                    request, response);
+        }	
+	}//email
+			
 	
 	private void listActivity(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
@@ -125,7 +169,6 @@ public class EcaServlet extends HttpServlet {
 		        	int participantId = ParticipantDao.getId(firstName,lastName);
 		        		
 		        	//Submitting the Id & Activities selected to the bridge table
-		        	
 		        	String [] ecasSelected = request.getParameterValues("bookingCode");
 		        	      	
 		        		if ((participantId > 0) && (ecasSelected !=null)){

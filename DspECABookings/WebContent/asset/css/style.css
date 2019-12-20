@@ -57,24 +57,28 @@
          cursor: pointer;
          }
          .button3{
-         background-color: #cc33b8;
+         background-color: #dddedd;
          border: none;
-         color: white;
-         padding: 8px 10px;
-         text-align: center;
+         color: black;
+         padding: 14px 40px;
+         text-align: left;
+         font-weight:bold; 
          text-decoration: none;
          display: inline-block;
          float: right;
-         font-size: 20px;
+         font-size: 16px;
          margin: 4px 2px;
          cursor: pointer;
          }
-        table {
+        table.table1 {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
  		 width: 100%;
 		}
-
+ 		table.table2 {
+  		font-family: arial, sans-serif;
+ 		 width: 600px;
+		}
 		
 		th:nth-child(1) {
   		text-align: left;
@@ -185,15 +189,21 @@
 		tr:nth-child(even) {
  		 background-color: #85C1E9;
 		}
+		
+		.fieldset-auto-width {
+         display: inline-block;
+    }
+    
 	iframe{
 	margin: 0 auto;
 	}
+	
 	footer{
 	position: fixed;
 	padding: 10px 10px  0px 10px;
 	text-align: center;
 	bottom:0;
-	width: 100%;
+	width: 75%;
 	height: 40px;
 	background: lightgrey;
 	}

@@ -7,7 +7,7 @@
 <title>Code of Conduct</title>
 </head>
 <body>
-
+<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
 <h1>CODE OF CONDUCT FOR EXTRA CURRICULAR ACTIVITIES</h1>
 
 The code of conduct followed in school should be continued into after school activities to ensure that all children can enjoy ECAs without disruption and upset.

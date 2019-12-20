@@ -46,13 +46,13 @@
 	<label for="conduct">Agree to the Code of Conduct*:</label>  <input type= "checkbox" id="conduct" name="conduct" required> 	<br><br>
 	Medical Information and/or Additional Needs*:  <input type="text" name="medInfo" size="100" required ><br><br>
 	
-	<div class="tooltip">Emergency Mobile No.* (alternate number):<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="AlternateTelNo" size="20" pattern="[0-9]{10}"> <small>Format: 08xxxxxxxx (no spaces)</small>
+	<div class="tooltip">Emergency Mobile No.* (alternative number):<span class="tooltiptext">Ensure your mobile number has 10 digits and starts with 08</span>  <input type="tel" name="AlternateTelNo" size="20" pattern="[0-9]{10}"> <small>Format: 08xxxxxxxx (no spaces)</small>
 	</div>
 </fieldset>
 
 <fieldset>
 	<legend>Classes and Activities :     </legend>
-	<table>
+	<table class="table1">
   <tr>
     <th>Day</th>
     <th>Name</th>

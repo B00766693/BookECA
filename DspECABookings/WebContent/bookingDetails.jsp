@@ -7,25 +7,28 @@
 <head>
 <link   href="asset/css/style.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Booking Details</title>
 </head>
 <body>
 <img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
-<a href="timetable.jsp" class="button3">Add Details to Calendar - placeholder of timetable.jsp</a>
+<a class="button3">Export to your <br>Google Calendar</a>
 <a href=<%= request.getContextPath() %>/register" class="button2">Book Another Child</a>
+<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
 
 <h1>Booking is Successful</h1>
  <%
 String firstName = request.getParameter("firstName");
+String lastName = request.getParameter("lastName");
 String schoolClass = request.getParameter("schoolClass"); 
 String parentName = request.getParameter("parentName"); 
 %> 
-<h3>You have booked <font color=green> <%= firstName%> </font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h3>
+<h3>You have booked <font color=green> <%= firstName%> <nbsp> <%= lastName%></font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h3>
 
 
-<fieldset>
+<div>
+  <fieldset class="fieldset-auto-width">
 	<legend>Classes and Activities :  Booked   </legend>
-	<table>
+	<table class="table2">
   <tr>
     <th>Day</th>
     <th>Name</th>
@@ -42,7 +45,9 @@ String parentName = request.getParameter("parentName");
                 </tr>
             </c:forEach>
   </table>	
- </fieldset>
+</fieldset>
+</div>
+
  <br>
  <h3>The total amount due is <font color=blue>  <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
 
@@ -215,6 +220,13 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
        		'EXDATE;VALUE=DATE:20191222T141000',  
        		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
        	  ],
+       	  'reminders':{
+       		  'useDefault': false,
+       		  'overrides': [
+       			  {'method': 'email', 'minutes': 24 * 60},
+       			  {'method' : 'popup', 'minutes' : 60}
+       		  ]
+       	  },
     	  colorId: 5
        	};
 
@@ -265,11 +277,6 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
          }
       
       function insertSwimmingEvents() {
-        
-    	// Refer to the JavaScript quickstart on how to setup the environment:
-    	// https://developers.google.com/calendar/quickstart/js
-    	// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-    	// stored credentials.
 
     	var event = {
     	  'summary': 'TestSwimming',
@@ -285,6 +292,13 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
     		'EXDATE;VALUE=DATE:20191222T141000',  
     		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
     	  ],
+    	  'reminders':{
+       		  'useDefault': false,
+       		  'overrides': [
+       			  {'method': 'email', 'minutes': 24 * 60},
+       			  {'method' : 'popup', 'minutes' : 60}
+       		  ]
+    	  },
     	  colorId: 6
     	};
 
@@ -294,9 +308,8 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
     	});
 
     	request.execute(function(event) {
-    	  appendPre('TestSwimming dates inserted to calendar: ' + event.htmlLink);
-    	})  
-    	  
+    	  appendPre('Swimming dates inserted to calendar: ' + event.htmlLink);
+    	})   
       }
 
       
@@ -368,5 +381,27 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
+<form  action= "<%= request.getContextPath() %>/email" method="get">
+	<table border="0" width="35%" align="center">
+            <caption>Send New E-mail</caption>
+            <tr>
+                <td width="50%">Recipient address </td>
+                <td><input type="text" name="recipient" size="50"/></td>
+            </tr>
+            <tr>
+                <td>Subject </td>
+                <td><input type="text" name="subject" size="50"/></td>
+            </tr>
+            <tr>
+                <td>Content </td>
+                <td><textarea rows="10" cols="39" name="content"></textarea> </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Send"/></td>
+            </tr>
+        </table>
+         
+    </form>
+<h3><%=request.getAttribute("MessageEmail")%></h3>
 </body>
 </html>
