@@ -1,5 +1,5 @@
 package net.aisling.javaee;
-
+//for a test to commit changes
 public class Activity {
 
 	private int aId;
