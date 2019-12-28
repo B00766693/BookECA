@@ -20,8 +20,7 @@
 <a href="codeOfConduct.jsp" class="button">Code of Conduct</a>
 
 <h2> Welcome To The DSP Extra Curricular Activities Booking System  </h2><br><br>
-<p style="text-align:right;"><strong>Note:</strong>Click the <mark>right handside down arrow in calendar header</mark><br> to add/remove activities from the view</p>
-<iframe style="floatright;"src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=2&amp;bgcolor=%23B39DDB&amp;ctz=Europe%2FDublin&amp;src=dXRyaGs5c3QwZ3ZyM3ZtcHJyYnBuaWJvb2NAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=NGJpOW1taG5lMHFrZ2x1aWJrcTFlbXNmbGdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=N3M2ZmZqZzE3anFscnBjMGh1ZXQ1dGZsbzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=aTAzMnRzOWE5Y2U5cGl1YW1xOXZ1NDQ2dGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=OTA3ZGpkaHVvZDR0aG82YWVybzZsZnRwM2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23A87070&amp;color=%23D6AE00&amp;color=%233366CC&amp;color=%23227F63&amp;color=%233366CC&amp;title=Extra%20%20Curricular%20Activities&amp;showPrint=0&amp;showTabs=0&amp;showTz=0" style="border-width:0" width="1000" height="400" frameborder="0" scrolling="no"></iframe>
+<iframe style="floatright;"src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=2&amp;bgcolor=%23B39DDB&amp;ctz=Europe%2FDublin&amp;src=dXRyaGs5c3QwZ3ZyM3ZtcHJyYnBuaWJvb2NAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=NGJpOW1taG5lMHFrZ2x1aWJrcTFlbXNmbGdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=N3M2ZmZqZzE3anFscnBjMGh1ZXQ1dGZsbzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=aTAzMnRzOWE5Y2U5cGl1YW1xOXZ1NDQ2dGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=OTA3ZGpkaHVvZDR0aG82YWVybzZsZnRwM2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23A87070&amp;color=%23D6AE00&amp;color=%233366CC&amp;color=%23227F63&amp;color=%233366CC&amp;title=Extra%20%20Curricular%20Activities&amp;showPrint=0&amp;showTabs=0&amp;showTz=0" style="border-width:0" width="1000" height="300" frameborder="0" scrolling="no"></iframe>
 
 <form  action= "<%= request.getContextPath() %>/register" method="get">
 	<fieldset>
@@ -117,7 +116,7 @@ function ValidateActivitySelection() {
 		}
 	}
 }
-
+</script>
 
 
 </body>

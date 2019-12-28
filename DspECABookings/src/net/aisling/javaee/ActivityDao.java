@@ -95,5 +95,31 @@ public List<Activity> listAllBookedActivities(String pFirstName, String pLastNam
 			
 			return listBookedActivity;
 		}
+
+
+public List<Activity> listNameOfActivities(String pFirstName, String pLastName) throws SQLException {
+	
+	List<Activity> listNameOfBookedActivity = new ArrayList<>();
+    
+	String sql = "SELECT  activityName FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = '"+pFirstName+"' AND last_name = '"+pLastName+"'";
+	
+	connect();
+	Statement statement = jdbcConnection.createStatement();
+	ResultSet resultSet = statement.executeQuery(sql);
+		while(resultSet.next()) {
+			String activityName = resultSet.getString("activityName");
+			
+			Activity activity = new Activity(activityName);
+			listNameOfBookedActivity.add(activity);
+		}
+		resultSet.close();
+		statement.close();
 		
+		disconnect();
+		
+		return listNameOfBookedActivity;
+	}
+	
+
+
 }

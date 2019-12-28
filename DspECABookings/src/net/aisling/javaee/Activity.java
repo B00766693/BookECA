@@ -25,6 +25,10 @@ public class Activity {
 		this.classTime = classTime;
 		this.cost = cost;
 	}
+	
+	public Activity(String activityName) {
+		this.activityName = activityName;
+	}
 
 	public Activity(String dayOn, String activityName, String classTime, String eligibility,
 			int noOfWeeks, int cost, int maxClassSize, int spacesAvailable, int aId) {
@@ -111,6 +115,8 @@ public class Activity {
 	public void setDayOn(String dayOn) {
 		this.dayOn = dayOn;
 	}
-		
-	
+
+	public String toString() {
+		return activityName +" ";
+	}	
 }

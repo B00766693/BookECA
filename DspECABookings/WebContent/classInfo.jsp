@@ -3,19 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link   href="asset/css/style.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Class Details</title>
 </head>
 <body>
-<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
+<a href="<%= request.getContextPath() %>/default" class="button">Home</a>
+<a href="codeOfConduct.jsp" class="button">Code of Conduct</a>
 
-<h1>FREQUENTLY ASKED QUESTIONS</h1>
+<h1>CLASS INFORMATION AND FREQUENTLY ASKED QUESTIONS</h1>
 
 <h3>How do I book ECAs this term?</h3>
-Complete the questions listed before the activities list. Your name, Child’s Name, Class, Agree to the Code
-of Conduct. A copy of Code of Conduct is available from the main page. <br>
-Tick the checkboxes to select the activities/classes.<br>
-Then Click the submit button to confirm your selection.<br>
+On the home page, complete the questions listed underneath the Calendar: your child’s name, their class, your name and contact numbers. Agree to the Code
+of Conduct by clicking the checkbox - a copy of Code of Conduct is available on the link above and from the main page. <br>
+To select the activities/classes tick the checkboxes in the table  .<br>
+Then Click the green submit button (below the table) to confirm your selection.<br>
 With this system there is one booking transaction per child, one child = 1 submission/payment, multiple children can’t go on same form. Choose
 the activities you wish to book for each child, then pay for each child (see next question).
 

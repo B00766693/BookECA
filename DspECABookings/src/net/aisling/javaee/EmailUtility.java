@@ -17,7 +17,7 @@ public class EmailUtility {
 	
 	public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
-            String subject, String message) throws AddressException,
+             String message) throws AddressException,
             MessagingException {
  
         // sets SMTP server properties
@@ -42,9 +42,11 @@ public class EmailUtility {
         msg.setFrom(new InternetAddress(userName));
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
+        msg.setSubject("DSP ECA Booking Confirmation");
         msg.setSentDate(new Date());
         msg.setText(message);
+        
+        
  
         // sends the e-mail
         Transport.send(msg);

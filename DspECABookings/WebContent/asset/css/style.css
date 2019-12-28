@@ -1,3 +1,7 @@
+	* {
+  box-sizing: border-box;
+}
+	
 	.tooltip {
   position: relative;
   display: inline-block;
@@ -19,9 +23,19 @@
   left: 105%;
 }
 
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+		h2 {
+  		position: absolute;
+  		left: 205px;
+  		top: 38px;
+		}
+		h3{
+		style= text-align:center;
+		}
          .button {
          background-color: #1c87c9;
          border: none;
@@ -35,14 +49,7 @@
          margin: 4px 2px;
          cursor: pointer;
          }
-         h2 {
-  		position: absolute;
-  		left: 205px;
-  		top: 38px;
-		}
-		h3{
-		style= text-align:center;
-		}
+         
 		.button2{
          background-color: #33cc33;
          border: none;
@@ -61,13 +68,13 @@
          border: none;
          color: black;
          padding: 14px 40px;
-         text-align: left;
+         text-align: center;
          font-weight:bold; 
          text-decoration: none;
          display: inline-block;
-         float: right;
          font-size: 16px;
-         margin: 4px 2px;
+         width: 100%;
+         margin: 2px 2px;
          cursor: pointer;
          }
         table.table1 {
@@ -197,6 +204,46 @@
 	iframe{
 	margin: 0 auto;
 	}
+	
+	
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 70%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: right;
+  width: 30%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+/* Add a card effect */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+  }
+}
+	
 	
 	footer{
 	position: fixed;

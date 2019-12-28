@@ -84,16 +84,29 @@ public class EcaServlet extends HttpServlet {
 	}//doGet
 	
 	private void email(HttpServletRequest request, HttpServletResponse response)
-		    throws ServletException, IOException{
+		    throws SQLException,ServletException, IOException{
 		// reads form fields
         String recipient = request.getParameter("recipient");
-        String subject = request.getParameter("subject");
-        String content = request.getParameter("content");
- 
-        String resultMessage = "";
- 
+        String fName = request.getParameter("firstName");
+        String lName = request.getParameter("lastName");
+        String cost = request.getParameter("cost");
+        
+        //declare additional variables
+        int participantId = ParticipantDao.getId(fName,lName);
+        List<Activity> listBookedActivity = activityDAO.listNameOfActivities(fName,lName);
+        
+        String content = "";
+        String resultMessage = " ";
+    		
+        content = "You have booked "+fName+" "+lName+" into  \n" +
+        		"the following activities "+listBookedActivity+" \n\n" +
+        		"The total cost is €"+cost+". \n\n" +
+        		"Please transfer the amount due to: \n\n DSP PTA \n Allied Irish Banks \n 21 Castle Street Dalkey \n IBAN: IEAIBK933538123456789 \n\n" + 
+        		"using your name and the ECA ID number: "+participantId+" as the reference. \n\n" +
+        		"Kind regards, \n The ECA Team ";
+        		
         try {
-            EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
+            EmailUtility.sendEmail(host, port, user, pass, recipient, 
                     content);
             resultMessage = "The e-mail was sent successfully";
         } catch (Exception ex) {
@@ -183,7 +196,7 @@ public class EcaServlet extends HttpServlet {
 		        			int is=st.executeUpdate("INSERT INTO activity_enrollment(id, activityId) VALUES("+participantId+", "+ecaConvert+")");
 		        			System.out.println("Data is successfully inserted into database.");
 		        			int ib=st.executeUpdate("UPDATE ecas SET spacesAvailable = spacesAvailable - 1 WHERE activityId = "+ecaConvert+" ");
-		        			System.out.println("Spaces Available have been updatd in database.");
+		        			System.out.println("Spaces Available have been updated in database.");
 		        			}catch(Exception e){
 		        			System.out.println(e);
 		        			}
@@ -199,6 +212,7 @@ public class EcaServlet extends HttpServlet {
 				//Get the total amount due
 				String [] ecasSelected = request.getParameterValues("bookingCode");
 				int totalAmount = 0;
+				int participantId = ParticipantDao.getId(firstName,lastName);
 				
 					if (ecasSelected !=null){
 						for(int i=0; i <ecasSelected.length; i++){
@@ -215,8 +229,18 @@ public class EcaServlet extends HttpServlet {
 							}//for
 					}//if
 					
+					//submit the total amount to the database 
+					try{
+	        			Class.forName("com.mysql.jdbc.Driver");
+	        			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root", "aisling");
+	        			Statement st=con.createStatement();
+	        			int ic=st.executeUpdate("UPDATE participant SET total_due = "+totalAmount+" WHERE id = "+participantId+" ");
+	        			System.out.println("Total amount is successfully inserted into database.");
+	        			}catch(Exception e){
+	        			System.out.println(e);
+	        			}		
+					
 				request.setAttribute("totalCost",totalAmount);
-				
 				
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/bookingDetails.jsp");
 		        dispatcher.forward(request,response);

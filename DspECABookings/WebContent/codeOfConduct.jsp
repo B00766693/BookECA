@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link   href="asset/css/style.css" rel="stylesheet">
 <title>Code of Conduct</title>
 </head>
 <body>
-<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
+<img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
+<a href="<%= request.getContextPath() %>/default" class="button">Home</a>
+<a href="classInfo.jsp" class="button">Class Info</a>
 <h1>CODE OF CONDUCT FOR EXTRA CURRICULAR ACTIVITIES</h1>
 
 The code of conduct followed in school should be continued into after school activities to ensure that all children can enjoy ECAs without disruption and upset.

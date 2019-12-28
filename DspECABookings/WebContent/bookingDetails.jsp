@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="net.aisling.javaee.ParticipantDao" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,16 +13,20 @@
 </head>
 <body>
 <img src="asset/images/2465.jpg" alt="DSP Logo" width="175" height="100" >
-<a class="button3">Export to your <br>Google Calendar</a>
-<a href=<%= request.getContextPath() %>/register" class="button2">Book Another Child</a>
-<a href=<%= request.getContextPath() %>/register" class="button2">Home</a>
 
+<a href="<%= request.getContextPath() %>/default" class="button">Home</a>
+<a href="<%= request.getContextPath() %>/default" class="button">Book Another Child</a>
+
+<div class="row">
+  <div class="leftcolumn">
+  
 <h1>Booking is Successful</h1>
  <%
 String firstName = request.getParameter("firstName");
 String lastName = request.getParameter("lastName");
 String schoolClass = request.getParameter("schoolClass"); 
 String parentName = request.getParameter("parentName"); 
+int participantId = ParticipantDao.getId(request.getParameter("firstName"),request.getParameter("lastName"));
 %> 
 <h3>You have booked <font color=green> <%= firstName%> <nbsp> <%= lastName%></font> <% %>  <% %>of <font color=green><%= schoolClass%> </font>into: </h3>
 
@@ -46,10 +52,12 @@ String parentName = request.getParameter("parentName");
             </c:forEach>
   </table>	
 </fieldset>
-</div>
+
+</div> <!--//table2--> 
 
  <br>
  <h3>The total amount due is <font color=blue>  <% %> €  <%= request.getAttribute("totalCost")%></font> </h3> 
+ 
 
 <p>
 Please transfer the amount due to:<br><br>
@@ -58,32 +66,38 @@ Allied Irish Banks<br>
 21 Castle Street Dalkey<br>
 IBAN: IEAIBK933538123456789<br>
 <br>
-Please use  <span style="font-weight:bold"><%= parentName%></span> as a reference in your bank transfer.
+Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantId%></span> as a reference in your bank transfer.
 </p>
+</div><!--//left column--> 
 
-  <p>Google Calendar API Quickstart</p>
 
-
-<!--Checkboxes to determine what dates to put in--> 
-<p>Select which activity dates you want inserted to your google calendar:</p>
-  <input type="checkbox"   name="activity" id="activity" value="1" > Add <font color=blue>1st & 2nd Class Basketball </font>Dates<br>
-  <input type="checkbox" name="activity" id="activity" value="2"> Add <font color=blue>Arts  & Crafts </font>Dates<br>
-  <input type="checkbox"   name="activity" id="activity" value="3" > Add <font color=blue>3rd Class Basketball</font> Dates<br>
-  <input type="checkbox" name="activity" id="activity" value="4"> Add <font color=blue>Hockey </font>Dates<br>
-  <input type="checkbox" name="activity" id="activity" value="5"> Add <font color=blue>Swimming </font>Dates<br>
+ <!--Google Calendar Integration--> 
+ <div class="rightcolumn">
+    <div class="card">
+ 
+	<a class="button3">Export to your <br>Google Calendar</a>
 <br><br>
+<!--Checkboxes to determine what dates to put in--> 
+  <input type="checkbox"   name="activity" id="activity" value="1" > <font color=blue>1st & 2nd Class Basketball </font>Dates<br>
+  <input type="checkbox" name="activity" id="activity" value="2"> <font color=blue>Arts  & Crafts </font>Dates<br>
+  <input type="checkbox"   name="activity" id="activity" value="3" >  <font color=blue>3rd Class Basketball</font> Dates<br>
+  <input type="checkbox" name="activity" id="activity" value="4">  <font color=blue>Hockey </font>Dates<br>
+  <input type="checkbox" name="activity" id="activity" value="5">  <font color=blue>Swimming </font>Dates<br>
+<br>
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorise</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
     
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
+</div><!--//card--> 
+</div><!--//right column--> 
+
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '';
       var API_KEY = '';
-      //variables to use in if statement
       
 	
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -201,11 +215,6 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
        
        function insertBasketballFirstSecondEvents() {
            
-       	// Refer to the JavaScript quickstart on how to setup the environment:
-       	// https://developers.google.com/calendar/quickstart/js
-       	// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-       	// stored credentials.
-
        	var event = {
        	  'summary': 'TestBasketballFirstSecond',
        	  'start': {
@@ -242,12 +251,7 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
          }
        
        function insertBasketballThirdEvents() {
-           
-       	// Refer to the JavaScript quickstart on how to setup the environment:
-       	// https://developers.google.com/calendar/quickstart/js
-       	// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-       	// stored credentials.
-
+      
        	var event = {
        	  'summary': 'TestBasketballThird',
        	  'start': {
@@ -262,6 +266,13 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
        		'EXDATE;VALUE=DATE:20191222T141000',  
        		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
        	  ],
+       	'reminders':{
+     		  'useDefault': false,
+     		  'overrides': [
+     			  {'method': 'email', 'minutes': 24 * 60},
+     			  {'method' : 'popup', 'minutes' : 60}
+     		  ]
+     	  },
     	  colorId: 3
        	};
 
@@ -329,7 +340,14 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
       		'EXDATE;VALUE=DATE:20191228T141000',  
       		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
       	  ],
-    	  colorId: 10//colour ok
+      	'reminders':{
+     		  'useDefault': false,
+     		  'overrides': [
+     			  {'method': 'email', 'minutes': 24 * 60},
+     			  {'method' : 'popup', 'minutes' : 60}
+     		  ]
+     	  },
+    	  colorId: 10
       	};
 
       	var request = gapi.client.calendar.events.insert({
@@ -359,7 +377,14 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
         		'EXDATE;VALUE=DATE:20191228T141000',  
         		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
         	  ],
-        	  colorId: 11//colour ok
+        	  'reminders':{
+           		  'useDefault': false,
+           		  'overrides': [
+           			  {'method': 'email', 'minutes': 24 * 60},
+           			  {'method' : 'popup', 'minutes' : 60}
+           		  ]
+           	  },
+        	  colorId: 11
         	};
 
         	var request = gapi.client.calendar.events.insert({
@@ -381,27 +406,28 @@ Please use  <span style="font-weight:bold"><%= parentName%></span> as a referenc
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
+
+<!--Email Confirmation--> 
+<div class="rightcolumn">
+    <div class="card">
+    <a class="button3">Receive Email  <br>Confirmation of Booking</a>
 <form  action= "<%= request.getContextPath() %>/email" method="get">
 	<table border="0" width="35%" align="center">
-            <caption>Send New E-mail</caption>
             <tr>
-                <td width="50%">Recipient address </td>
-                <td><input type="text" name="recipient" size="50"/></td>
+                <td width="50%">Insert email address </td>
+                <td><input type="text" name="recipient" size="40"/></td>
             </tr>
-            <tr>
-                <td>Subject </td>
-                <td><input type="text" name="subject" size="50"/></td>
-            </tr>
-            <tr>
-                <td>Content </td>
-                <td><textarea rows="10" cols="39" name="content"></textarea> </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" value="Send"/></td>
-            </tr>
-        </table>
-         
+            </table>
+            <input type ="hidden" id="firstName" name="firstName" value="<%= firstName%>">
+			<input type ="hidden" id="lastName" name="lastName" value=<%= lastName%>>
+            <input type ="hidden" id="cost" name="cost" value=<%= request.getAttribute("totalCost")%>>
+       <input type="submit" value="Send"/>  
     </form>
 <h3><%=request.getAttribute("MessageEmail")%></h3>
+
+</div><!--//card--> 
+</div><!--//right column--> 
+
+</div><!--//row--> 
 </body>
 </html>
