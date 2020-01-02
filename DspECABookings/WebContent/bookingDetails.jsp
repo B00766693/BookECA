@@ -216,18 +216,18 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
        function insertBasketballFirstSecondEvents() {
            
        	var event = {
-       	  'summary': 'TestBasketballFirstSecond',
+       	  'summary': 'Basketball - 1st & 2nd Class',
        	  'start': {
-       	    'dateTime': '2019-12-07T14:10:00+00:00',
+       	    'dateTime': '2020-01-13T14:10:00+00:00',
        	    'timeZone': 'Europe/Dublin'
        	  },
        	  'end': {
-       	    'dateTime': '2019-12-07T15:00:00+00:00',
+       	    'dateTime': '2020-01-13T15:00:00+00:00',
        	    'timeZone': 'Europe/Dublin'
        	  },
        	  'recurrence': [
-       		'EXDATE;VALUE=DATE:20191222T141000',  
-       		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
+       		'EXDATE;VALUE=DATE:20200217T141000,20200316T141000',  
+       		'RRULE:FREQ=WEEKLY;UNTIL=20200404T090000Z'
        	  ],
        	  'reminders':{
        		  'useDefault': false,
@@ -245,7 +245,7 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
        	});
 
        	request.execute(function(event) {
-       	  appendPre('TestBasketball First & Second dates inserted to calendar: ' + event.htmlLink);
+       	  appendPre('Basketball for 1st & 2nd dates inserted to calendar');
        	})  
        	  
          }
@@ -253,18 +253,18 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
        function insertBasketballThirdEvents() {
       
        	var event = {
-       	  'summary': 'TestBasketballThird',
+       	  'summary': 'Basketball 3rd Class',
        	  'start': {
-       	    'dateTime': '2019-12-07T15:00:00+00:00',
+       	    'dateTime': '2020-01-15T15:00:00+00:00',
        	    'timeZone': 'Europe/Dublin'
        	  },
        	  'end': {
-       	    'dateTime': '2019-12-07T15:45:00+00:00',
+       	    'dateTime': '2020-01-15T15:45:00+00:00',
        	    'timeZone': 'Europe/Dublin'
        	  },
        	  'recurrence': [
-       		'EXDATE;VALUE=DATE:20191222T141000',  
-       		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
+       		'EXDATE;VALUE=DATE:20200219T150000',  
+       		'RRULE:FREQ=WEEKLY;UNTIL=20200404T090000Z'
        	  ],
        	'reminders':{
      		  'useDefault': false,
@@ -282,7 +282,7 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
        	});
 
        	request.execute(function(event) {
-       	  appendPre('TestBasketballThird dates inserted to calendar: ' + event.htmlLink);
+       	  appendPre('Basketball 3rd Class dates inserted to calendar');
        	})  
        	  
          }
@@ -290,18 +290,18 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
       function insertSwimmingEvents() {
 
     	var event = {
-    	  'summary': 'TestSwimming',
+    	  'summary': 'Swimming',
     	  'start': {
-    	    'dateTime': '2019-12-08T14:10:00+00:00',
+    	    'dateTime': '2020-01-16T15:00:00+00:00',
     	    'timeZone': 'Europe/Dublin'
     	  },
     	  'end': {
-    	    'dateTime': '2019-12-08T15:00:00+00:00',
+    	    'dateTime': '2020-01-16T15:45:00+00:00',
     	    'timeZone': 'Europe/Dublin'
     	  },
     	  'recurrence': [
-    		'EXDATE;VALUE=DATE:20191222T141000',  
-    		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
+    		'EXDATE;VALUE=DATE:20200220T150000',  
+    		'RRULE:FREQ=WEEKLY;UNTIL=20200404T090000Z'
     	  ],
     	  'reminders':{
        		  'useDefault': false,
@@ -319,7 +319,7 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
     	});
 
     	request.execute(function(event) {
-    	  appendPre('Swimming dates inserted to calendar: ' + event.htmlLink);
+    	  appendPre('Swimming dates inserted to calendar');
     	})   
       }
 
@@ -327,18 +327,18 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
       function insertHockeyEvents() {
           
       	var event = {
-      	  'summary': 'TestHockey',
+      	  'summary': 'Hockey',
       	  'start': {
-      	    'dateTime': '2019-12-07T14:10:00+00:00',
+      	    'dateTime': '2020-01-17T14:10:00+00:00',
       	    'timeZone': 'Europe/Dublin'
       	  },
       	  'end': {
-      	    'dateTime': '2019-12-07T15:45:00+00:00',
+      	    'dateTime': '2020-01-17T15:45:00+00:00',
       	    'timeZone': 'Europe/Dublin'
       	  },
       	  'recurrence': [
-      		'EXDATE;VALUE=DATE:20191228T141000',  
-      		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
+      		'EXDATE;VALUE=DATE:20200221T141000',  
+      		'RRULE:FREQ=WEEKLY;UNTIL=20200401T090000Z'
       	  ],
       	'reminders':{
      		  'useDefault': false,
@@ -356,7 +356,7 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
       	});
 
       	request.execute(function(event) {
-      	  appendPre('TestHockey dates inserted to calendar: ' + event.htmlLink);
+      	  appendPre('Hockey dates inserted to calendar');
       	})  
       	  
         }
@@ -364,18 +364,18 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
       function insertCraftsEvents() {
           
         	var event = {
-        	  'summary': 'TestArts&Crafts',
+        	  'summary': 'Arts & Crafts',
         	  'start': {
-        	    'dateTime': '2019-12-10T14:10:00+00:00',
+        	    'dateTime': '2020-01-14T14:10:00+00:00',
         	    'timeZone': 'Europe/Dublin'
         	  },
         	  'end': {
-        	    'dateTime': '2019-12-10T15:30:00+00:00',
+        	    'dateTime': '2020-01-14T15:30:00+00:00',
         	    'timeZone': 'Europe/Dublin'
         	  },
         	  'recurrence': [
-        		'EXDATE;VALUE=DATE:20191228T141000',  
-        		'RRULE:FREQ=WEEKLY;UNTIL=20200131T090000Z'
+        		'EXDATE;VALUE=DATE:20200218T141000,20200317T141000',  
+        		'RRULE:FREQ=WEEKLY;UNTIL=20200401T090000Z'
         	  ],
         	  'reminders':{
            		  'useDefault': false,
@@ -393,7 +393,7 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
         	});
 
         	request.execute(function(event) {
-        	  appendPre('TestArts&Crafts dates inserted to calendar: ' + event.htmlLink);
+        	  appendPre('Arts & Crafts dates inserted to calendar');
         	})  
         	  
           }
