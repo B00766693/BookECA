@@ -120,6 +120,31 @@ public List<Activity> listNameOfActivities(String pFirstName, String pLastName) 
 		return listNameOfBookedActivity;
 	}
 	
+//int method to get activity spaces
+	public static int getSpaces(int activityId) 
+			throws SQLException {
+			
+			int spaces = 0;
+			
+			try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager
+	                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "aisling");
 
+			String sql = "SELECT spacesAvailable FROM ecas WHERE activityId = '"+activityId+"' ";
+
+			Statement statement = con.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+				if(resultSet.next()) {
+					spaces = resultSet.getInt("spacesAvailable");
+				}
+				resultSet.close();
+				statement.close();
+					
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+			return spaces;
+			}//getSpaces()
 
 }

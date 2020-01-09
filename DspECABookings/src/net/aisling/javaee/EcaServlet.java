@@ -96,7 +96,7 @@ public class EcaServlet extends HttpServlet {
         List<Activity> listBookedActivity = activityDAO.listNameOfActivities(fName,lName);
         
         String content = "";
-        String resultMessage = " ";
+        String resultMessage = "";
     		
         content = "You have booked "+fName+" "+lName+" into  \n" +
         		"the following activities "+listBookedActivity+" \n\n" +

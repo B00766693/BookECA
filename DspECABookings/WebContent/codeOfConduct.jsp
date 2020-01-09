@@ -48,5 +48,10 @@ More information on the procedure for implementing the code of conduct is availa
 <br><br>
 PTA Committee
 
+<footer>
+Contact Details:  Aisling 0861234567 and Barry 0871234567<br>
+Email:  dspns.eca@gmail.com  
+</footer>
+
 </body>
 </html>

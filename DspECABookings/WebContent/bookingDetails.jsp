@@ -81,8 +81,8 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
   <input type="checkbox"   name="activity" id="activity" value="1" > <font color=blue>1st & 2nd Class Basketball </font>Dates<br>
   <input type="checkbox" name="activity" id="activity" value="2"> <font color=blue>Arts  & Crafts </font>Dates<br>
   <input type="checkbox"   name="activity" id="activity" value="3" >  <font color=blue>3rd Class Basketball</font> Dates<br>
-  <input type="checkbox" name="activity" id="activity" value="4">  <font color=blue>Hockey </font>Dates<br>
-  <input type="checkbox" name="activity" id="activity" value="5">  <font color=blue>Swimming </font>Dates<br>
+  <input type="checkbox" name="activity" id="activity" value="4">  <font color=blue>Swimming </font>Dates<br>
+  <input type="checkbox" name="activity" id="activity" value="5">  <font color=blue>Hockey </font>Dates<br>
 <br>
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorise</button>
@@ -96,8 +96,8 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '';
-      var API_KEY = '';
+      var CLIENT_ID = 'INSERT FROM PASSWORD INFO';
+      var API_KEY = 'INSERT FROM PASSWORD INFO';
       
 	
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -201,10 +201,10 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
     	        			insertBasketballThirdEvents(); 
     	        			}
     	        		if (chosenActivity == 4)  {
-    	        			insertHockeyEvents(); 
+    	        			insertSwimmingEvents(); 
     	        			}
     	        		if (chosenActivity == 5)  {
-    	        			insertSwimmingEvents(); 
+    	        			insertHockeyEvents(); 
     	        			}
     			}
     		}
@@ -429,5 +429,9 @@ Please use  <span style="font-weight:bold"><%= parentName%> id: <%= participantI
 </div><!--//right column--> 
 
 </div><!--//row--> 
+<footer>
+Contact Details:  Aisling 0861234567 and Barry 0871234567<br>
+Email:  dspns.eca@gmail.com  
+</footer>
 </body>
 </html>

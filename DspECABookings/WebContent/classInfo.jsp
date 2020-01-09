@@ -73,6 +73,10 @@ The ECAs operate on a ‘not for profit’ basis. Any excess revenue is held by 
 and contributes to the range of activities (yoga, playball and other in-class activities)
 funded by the PTA throughout the year.
 
+<footer>
+Contact Details:  Aisling 0861234567 and Barry 0871234567<br>
+Email:  dspns.eca@gmail.com  
+</footer>
 
 </body>
 </html>

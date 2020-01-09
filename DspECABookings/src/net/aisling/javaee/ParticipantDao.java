@@ -61,7 +61,7 @@ public class ParticipantDao {
         }//for
 	}//printSQLException
 
-	//int method to get participant 
+	//int method to get participant ID
 	public static int getId(String pFirstName, String pLastName) 
 			throws SQLException {
 			
