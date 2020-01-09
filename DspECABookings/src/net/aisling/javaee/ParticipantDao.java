@@ -13,6 +13,8 @@ import net.aisling.javaee.Participant;
 
 public class ParticipantDao {
 	public int registerParticipant(Participant participant) throws ClassNotFoundException {
+		
+		// SQL statement
 		String INSERT_USERS_SQL = "INSERT INTO participant"
 				+ "  (first_name, last_name, class, parentName, telNo, medicalInfo,  emergencyNo) VALUES "
 				+ " (?, ?, ?,?,?,?,?);";
@@ -23,8 +25,8 @@ public class ParticipantDao {
 		try (Connection connection = DriverManager
 				.getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "aisling");
 
-				// Step 2:Create a statement using connection object
-				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+			// Statement using connection object
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
 			preparedStatement.setString(1, participant.getFirstName());
 			preparedStatement.setString(2, participant.getLastName());
 			preparedStatement.setString(3, participant.getSchoolClass());
@@ -34,11 +36,12 @@ public class ParticipantDao {
 			preparedStatement.setString(7, participant.getEmergNo());
 
 			System.out.println(preparedStatement);
-			// Step 3: Execute the query or update query
+			
+			// Execute the query
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// process sql exception
+			// Process sql exception
 			printSQLException(e);
 		}
 		return result;
@@ -55,12 +58,12 @@ public class ParticipantDao {
 				while (t != null) {
 					System.out.println("Cause: " + t);
 					t = t.getCause();
-				} // while
-			} // if
-		} // for
-	}// printSQLException
+				} 
+			} 
+		} 
+	}
 
-	// int method to get participant ID
+	// Method to get participant ID
 	public static int getId(String pFirstName, String pLastName) throws SQLException {
 
 		int participantId = 0;
@@ -85,6 +88,6 @@ public class ParticipantDao {
 			System.out.println(e);
 		}
 		return participantId;
-	}// getId()
+	}
 
 }

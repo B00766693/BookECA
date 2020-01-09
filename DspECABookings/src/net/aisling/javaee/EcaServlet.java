@@ -8,8 +8,6 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.sql.ResultSet;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
@@ -44,7 +42,7 @@ public class EcaServlet extends HttpServlet {
 
 		activityDAO = new ActivityDao(jdbcURL, jdbcUsername, jdbcPassword);
 
-		// reads SMTP server setting from web.xml file
+		// Reads SMTP server setting from web.xml file
 		ServletContext context = getServletContext();
 		host = context.getInitParameter("host");
 		port = context.getInitParameter("port");
@@ -73,21 +71,21 @@ public class EcaServlet extends HttpServlet {
 			default:
 				listActivity(request, response);
 				break;
-			}// switch
+			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
-		} // catch
-	}// doGet
+		} 
+	}
 
 	private void email(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		// reads form fields
+		// Reads form fields
 		String recipient = request.getParameter("recipient");
 		String fName = request.getParameter("firstName");
 		String lName = request.getParameter("lastName");
 		String cost = request.getParameter("cost");
 
-		// declare additional variables
+		// Declare additional variables
 		int participantId = ParticipantDao.getId(fName, lName);
 		List<Activity> listBookedActivity = activityDAO.listNameOfActivities(fName, lName);
 
@@ -160,7 +158,7 @@ public class EcaServlet extends HttpServlet {
 		participant.setMedInfo(medInfo);
 		participant.setEmergNo(emergNo);
 
-		// submit participant details to database
+		// Submit participant details to database
 		try {
 			participantDao.registerParticipant(participant);
 		} catch (Exception e) {
@@ -198,9 +196,9 @@ public class EcaServlet extends HttpServlet {
 				}
 			}
 
-		} // finally
+		} 
 
-		// create list of all activities inserted to database under participant id
+		// Create list of all activities inserted to database under participant id
 		List<Activity> listBookedActivity = activityDAO.listAllBookedActivities(firstName, lastName);
 		request.setAttribute("listBookedActivity", listBookedActivity);
 
@@ -221,10 +219,10 @@ public class EcaServlet extends HttpServlet {
 					totalAmount = totalAmount + 130;
 				if (ecasSelected[i].equals("5"))
 					totalAmount = totalAmount + 115;
-			} // for
-		} // if
+			}
+		}
 
-		// submit the total amount to the database
+		// Submit the total amount to the database
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database", "root",
@@ -243,4 +241,4 @@ public class EcaServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}// submitData
 
-}// EcaServlet
+}

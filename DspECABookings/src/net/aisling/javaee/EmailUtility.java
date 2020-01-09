@@ -18,14 +18,14 @@ public class EmailUtility {
 	public static void sendEmail(String host, String port, final String userName, final String password,
 			String toAddress, String message) throws AddressException, MessagingException {
 
-		// sets SMTP server properties
+		//SMTP server properties
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", host);
 		properties.put("mail.smtp.port", port);
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 
-		// creates a new session with an authenticator
+		//Creates a new session with an authenticator
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(userName, password);
@@ -34,7 +34,7 @@ public class EmailUtility {
 
 		Session session = Session.getInstance(properties, auth);
 
-		// creates a new e-mail message
+		//New e-mail message
 		Message msg = new MimeMessage(session);
 
 		msg.setFrom(new InternetAddress(userName));
@@ -44,7 +44,7 @@ public class EmailUtility {
 		msg.setSentDate(new Date());
 		msg.setText(message);
 
-		// sends the e-mail
+		//Sends the e-mail
 		Transport.send(msg);
 
 	}

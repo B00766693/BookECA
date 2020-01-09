@@ -40,14 +40,18 @@ public class ActivityDao {
 		}
 	}
 
+	//method to retrieve all activities 
 	public List<Activity> listAllActivities() throws SQLException {
 
 		List<Activity> listActivity = new ArrayList<>();
 
+		// SQL statement
 		String sql = "SELECT * FROM ecas";
 
 		connect();
 		Statement statement = jdbcConnection.createStatement();
+		
+		// Execute the query
 		ResultSet resultSet = statement.executeQuery(sql);
 		while (resultSet.next()) {
 			String dayOn = resultSet.getString("dayOn");
@@ -71,15 +75,18 @@ public class ActivityDao {
 		return listActivity;
 	}
 
+	// Method to retrieve all booked activities 
 	public List<Activity> listAllBookedActivities(String pFirstName, String pLastName) throws SQLException {
 
 		List<Activity> listBookedActivity = new ArrayList<>();
-
+		
+		// SQL statement
 		String sql = "SELECT  dayOn, activityName, classTime, cost FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = '"
 				+ pFirstName + "' AND last_name = '" + pLastName + "'";
 
 		connect();
 		Statement statement = jdbcConnection.createStatement();
+		// Execute the query
 		ResultSet resultSet = statement.executeQuery(sql);
 		while (resultSet.next()) {
 			String dayOn = resultSet.getString("dayOn");
@@ -98,15 +105,19 @@ public class ActivityDao {
 		return listBookedActivity;
 	}
 
+	// Method to retrieve just the name of activities based on first name, last name 
 	public List<Activity> listNameOfActivities(String pFirstName, String pLastName) throws SQLException {
 
 		List<Activity> listNameOfBookedActivity = new ArrayList<>();
 
+		// SQL statement
 		String sql = "SELECT  activityName FROM activity_enrollment JOIN ecas ON ecas.activityId = activity_enrollment.activityID JOIN participant ON participant.id = activity_enrollment.id WHERE first_name = '"
 				+ pFirstName + "' AND last_name = '" + pLastName + "'";
 
 		connect();
 		Statement statement = jdbcConnection.createStatement();
+		
+		// Execute the query
 		ResultSet resultSet = statement.executeQuery(sql);
 		while (resultSet.next()) {
 			String activityName = resultSet.getString("activityName");
@@ -122,7 +133,7 @@ public class ActivityDao {
 		return listNameOfBookedActivity;
 	}
 
-//int method to get activity spaces
+	//method to get activity spaces based on activityId
 	public static int getSpaces(int activityId) throws SQLException {
 
 		int spaces = 0;
@@ -131,10 +142,13 @@ public class ActivityDao {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false",
 					"root", "aisling");
-
+			
+			// SQL statement
 			String sql = "SELECT spacesAvailable FROM ecas WHERE activityId = '" + activityId + "' ";
 
 			Statement statement = con.createStatement();
+			
+			// Execute the query
 			ResultSet resultSet = statement.executeQuery(sql);
 			if (resultSet.next()) {
 				spaces = resultSet.getInt("spacesAvailable");
@@ -146,6 +160,6 @@ public class ActivityDao {
 			System.out.println(e);
 		}
 		return spaces;
-	}// getSpaces()
+	}
 
 }
